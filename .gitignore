@@ -1,0 +1,11 @@
+# machine-local / company-specific — never commit
+config/nvim/lua/gearup_local.lua
+LOCAL_NOTES.md
+
+# compiled demo binaries
+demo/services/users/users
+demo/services/orders/orders
+
+# editor droppings
+*.swp
+.DS_Store

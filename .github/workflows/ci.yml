@@ -1,0 +1,73 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: shellcheck all scripts
+        run: |
+          sudo apt-get update && sudo apt-get install -y shellcheck
+          shellcheck install.sh uninstall.sh bootstrap.sh lib/*.sh scripts/*.sh bin/ws
+          shellcheck -s sh config/shell/gearup.sh
+
+  demo-builds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: demo workspace compiles and vets
+        working-directory: demo
+        run: |
+          for d in pkg/models services/users services/orders; do
+            (cd "$d" && go build ./... && go vet ./...)
+          done
+
+  # The idempotency contract: install twice; the 2nd run must be a no-op.
+  install-linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ["ubuntu:24.04", "fedora:41", "archlinux:latest"]
+    runs-on: ubuntu-latest
+    container: ${{ matrix.image }}
+    steps:
+      - name: bootstrap container deps
+        run: |
+          if command -v apt-get >/dev/null; then apt-get update && apt-get install -y curl git sudo ca-certificates; fi
+          if command -v dnf >/dev/null; then dnf install -y curl git sudo findutils; fi
+          if command -v pacman >/dev/null; then pacman -Sy --noconfirm curl git sudo; fi
+      - uses: actions/checkout@v4
+      - name: first run (real install)
+        run: ./install.sh
+      - name: second run must be a no-op
+        run: |
+          out=$(./install.sh)
+          echo "$out"
+          # No step may install/link/write anything the second time.
+          if echo "$out" | grep -E '^\s+(ok|!!)\s'; then
+            echo "::error::second run was not a no-op"
+            exit 1
+          fi
+
+  install-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: first run
+        run: ./install.sh
+      - name: second run must be a no-op
+        run: |
+          out=$(./install.sh)
+          echo "$out"
+          if echo "$out" | grep -E '^\s+(ok|!!)\s'; then
+            echo "::error::second run was not a no-op"
+            exit 1
+          fi

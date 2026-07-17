@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# ws — the workspace switcher (tmux "sessionizer").
+#
+# Fuzzy-pick a project directory, then create-or-attach a tmux session named
+# after it. One session per project; switching is instant and your window
+# layout per project survives.
+#
+#   ws            fuzzy-pick from workspace roots + zoxide history
+#   ws <path>     jump straight to that directory's session
+#
+# Sources of candidates:
+#   * children of every dir in $WS_ROOTS (colon-separated)
+#   * your zoxide history (directories you actually visit)
+set -euo pipefail
+
+pick_dir() {
+  {
+    IFS=':' read -r -a roots <<<"${WS_ROOTS:-$HOME/work:$HOME/projects:$HOME/src}"
+    for root in "${roots[@]}"; do
+      [[ -d "$root" ]] || continue
+      if command -v fd >/dev/null 2>&1; then
+        fd --max-depth 1 --type d . "$root"
+      else
+        find "$root" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+      fi
+    done
+    command -v zoxide >/dev/null 2>&1 && zoxide query -l 2>/dev/null
+  } | awk 'NF && !seen[$0]++' \
+    | fzf --prompt='workspace> ' --height=60% --layout=reverse --border \
+          --preview 'ls -1 {} 2>/dev/null | head -20'
+}
+
+if [[ $# -ge 1 ]]; then
+  dir=$1
+else
+  dir=$(pick_dir) || exit 0
+fi
+[[ -d "$dir" ]] || { echo "ws: not a directory: $dir" >&2; exit 1; }
+
+name=$(basename "$dir" | tr '.: ' '___')
+
+if ! tmux has-session -t "=$name" 2>/dev/null; then
+  tmux new-session -ds "$name" -c "$dir"
+fi
+
+if [[ -n "${TMUX:-}" ]]; then
+  tmux switch-client -t "=$name"
+else
+  tmux attach -t "=$name"
+fi

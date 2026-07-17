@@ -1,0 +1,43 @@
+# gearup git additions — included from ~/.gitconfig, never replaces it.
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	line-numbers = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+
+[pull]
+	rebase = true
+
+[rebase]
+	autostash = true
+
+[fetch]
+	prune = true
+
+[push]
+	autoSetupRemote = true
+
+[init]
+	defaultBranch = main
+
+[alias]
+	s = status -sb
+	co = checkout
+	sw = switch
+	br = branch -vv
+	lg = log --oneline --graph --decorate -20
+	last = log -1 HEAD --stat
+	amend = commit --amend --no-edit
+	unstage = restore --staged
+	wip = !git add -A && git commit -m WIP
