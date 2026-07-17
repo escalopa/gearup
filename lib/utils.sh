@@ -74,9 +74,12 @@ pkg_install() {
 }
 
 pkg_update_index() {
+  # A failing index refresh (an unreachable third-party repo, a missing GPG
+  # key) must not abort the whole run: the packages we need usually live in
+  # the working repos. Warn and continue rather than letting set -e kill us.
   case "$GEARUP_PKG" in
-    apt)    maybe_sudo apt-get update -y ;;
-    pacman) maybe_sudo pacman -Sy --noconfirm ;;
+    apt)    maybe_sudo apt-get update -y || warn "apt-get update reported errors (a repo on this box is misconfigured); continuing" ;;
+    pacman) maybe_sudo pacman -Sy --noconfirm || warn "pacman -Sy reported errors; continuing" ;;
     *)      : ;; # brew/dnf resolve on install
   esac
 }
