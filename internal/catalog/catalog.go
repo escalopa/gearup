@@ -263,4 +263,5 @@ var Tools = []Tool{
 	{Name: "helm", Command: "helm", Desc: "Kubernetes packages", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "tflint", Command: "tflint", Desc: "Terraform linter", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "aws", Command: "aws", Desc: "AWS CLI v2", Step: "cloud", Category: "Cloud / IaC"},
+	{Name: "yc", Command: "yc", Desc: "Yandex Cloud CLI", Step: "cloud", Category: "Cloud / IaC"},
 }
