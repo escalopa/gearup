@@ -33,6 +33,11 @@ GEARUP_EXPLICIT_STEPS=0
 [[ ${#ONLY_STEPS[@]} -gt 0 ]] && GEARUP_EXPLICIT_STEPS=1
 export GEARUP_EXPLICIT_STEPS
 
+# Freshly-installed user binaries (terraform/kubectl/helm/aws → ~/.local/bin, go
+# tools → ~/go/bin, the TUI → ~/.local/bin) must be visible to this run so the
+# has_cmd checks that keep every step idempotent can see them on a re-run.
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
+
 detect_platform
 log "platform: $GEARUP_OS ($GEARUP_PKG)  root: $GEARUP_ROOT"
 [[ "$DRY_RUN" == "1" ]] && log "DRY RUN — nothing will be changed"
