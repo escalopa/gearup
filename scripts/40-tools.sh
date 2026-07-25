@@ -5,12 +5,17 @@
 # Whole tiers are grouped under headers so one can be deleted in a single edit.
 
 # _go_install <bin> <module@version> [build-tags]  (_need lives in lib/utils.sh)
+# Soft: a failed `go install` (bad/renamed module, transient network) warns and
+# is skipped rather than aborting the whole install run.
 _go_install() {
   local bin=$1 mod=$2 tags=${3:-}
   _need "$bin" || return 0
   log "go install $mod"
-  if [[ -n "$tags" ]]; then run go install -tags "$tags" "$mod"; else run go install "$mod"; fi
-  ok "installed $bin"
+  if [[ -n "$tags" ]]; then
+    if run go install -tags "$tags" "$mod"; then ok "installed $bin"; else warn "$bin: go install failed — skipping"; fi
+  else
+    if run go install "$mod"; then ok "installed $bin"; else warn "$bin: go install failed — skipping"; fi
+  fi
 }
 
 # _pkg_or_cargo <cmd> <pkg-name> <crate-name>
@@ -74,8 +79,9 @@ else
   _go_install protoc-gen-go-grpc google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
   _go_install hey          github.com/rakyll/hey@latest
   _go_install usql         github.com/xo/usql@latest
-  # golang-migrate needs db drivers compiled in via build tags.
-  _go_install migrate      github.com/golang-migrate/migrate/v4/cmd/migrate@latest 'postgres mysql sqlite3'
+  # golang-migrate needs db drivers compiled in via build tags. Keep to the
+  # pure-Go drivers (postgres, mysql) so it builds without cgo.
+  _go_install migrate      github.com/golang-migrate/migrate/v4/cmd/migrate@latest 'postgres mysql'
 
   # ---- git / TUIs -----------------------------------------------------------
   _go_install lazygit      github.com/jesseduffield/lazygit@latest
@@ -92,7 +98,7 @@ else
   # ---- VCS / CI / workflow --------------------------------------------------
   _go_install glab         gitlab.com/gitlab-org/cli/cmd/glab@latest
   _go_install act          github.com/nektos/act@latest
-  _go_install gitleaks     github.com/gitleaks/gitleaks/v8@latest
+  _go_install gitleaks     github.com/zricethezav/gitleaks/v8@latest
   _go_install shfmt        mvdan.cc/sh/v3/cmd/shfmt@latest
 
   # ---- Charm UX -------------------------------------------------------------

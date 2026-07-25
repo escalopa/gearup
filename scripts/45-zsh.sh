@@ -12,7 +12,7 @@ if gearup_selected starship; then
   if has_cmd starship; then
     skip "starship"
   elif [[ "$GEARUP_OS" == "macos" ]]; then
-    pkg_install starship && ok "installed starship (brew)"
+    if pkg_install starship && has_cmd starship; then ok "installed starship (brew)"; else warn "starship: install failed"; fi
   elif pkg_install starship >/dev/null 2>&1 && has_cmd starship; then
     ok "installed starship (system package)"
   else
@@ -42,8 +42,11 @@ if gearup_selected zsh-plugins; then
       skip "zsh plugin $name"
     else
       log "cloning zsh plugin $name"
-      run git clone --depth 1 "$url" "$dest"
-      ok "installed zsh plugin $name"
+      if run git clone --depth 1 "$url" "$dest"; then
+        ok "installed zsh plugin $name"
+      else
+        warn "zsh plugin $name: clone failed — skipping"
+      fi
     fi
   done
 fi
