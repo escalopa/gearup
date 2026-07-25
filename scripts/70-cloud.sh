@@ -87,8 +87,8 @@ for entry in "${CLOUD_TOOLS[@]}"; do
   _need "$cmd" || continue
   log "installing $cmd"
   if "$fn"; then
-    ok "installed $cmd"
+    ok "installed $cmd"; record_result installed "$cmd"
   else
-    warn "$cmd: install failed or unsupported on this platform — install it manually"
+    warn "$cmd: install failed or unsupported on this platform — install it manually"; record_result failed "$cmd"
   fi
 done

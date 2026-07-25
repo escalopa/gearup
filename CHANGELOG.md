@@ -21,6 +21,9 @@ high-level story; see the Releases page for the per-version detail.
   history-search plugins and a backend-aware starship prompt.
 - **Per-tool selection**: a `GEARUP_ONLY` allow-list lets the TUI install exactly
   the tools you choose while reusing the same idempotent scripts.
+- **Install results report**: every run records each tool as installed / already
+  present / failed. The CLI prints a tally (naming failures) and the TUI shows a
+  results summary. Installation is strictly sequential — never concurrent.
 - **AI coding CLIs** (opt-in): claude (Claude Code), codex (OpenAI), opencode,
   and gemini-cli, each installed via its own distribution (Homebrew on macOS,
   npm elsewhere).

@@ -12,9 +12,9 @@ _go_install() {
   _need "$bin" || return 0
   log "go install $mod"
   if [[ -n "$tags" ]]; then
-    if run go install -tags "$tags" "$mod"; then ok "installed $bin"; else warn "$bin: go install failed — skipping"; fi
+    if run go install -tags "$tags" "$mod"; then ok "installed $bin"; record_result installed "$bin"; else warn "$bin: go install failed — skipping"; record_result failed "$bin"; fi
   else
-    if run go install "$mod"; then ok "installed $bin"; else warn "$bin: go install failed — skipping"; fi
+    if run go install "$mod"; then ok "installed $bin"; record_result installed "$bin"; else warn "$bin: go install failed — skipping"; record_result failed "$bin"; fi
   fi
 }
 
@@ -29,16 +29,16 @@ _pkg_or_cargo() {
     return 0
   fi
   if pkg_install "$pkg" >/dev/null 2>&1 && has_cmd "$cmd"; then
-    ok "installed $cmd ($pkg)"
+    ok "installed $cmd ($pkg)"; record_result installed "$cmd"
   elif has_cmd cargo; then
     log "cargo install $crate (building from source, may take a minute)"
     if run cargo install --locked "$crate"; then
-      ok "installed $cmd (cargo)"
+      ok "installed $cmd (cargo)"; record_result installed "$cmd"
     else
-      warn "$cmd: cargo build failed — skipping"
+      warn "$cmd: cargo build failed — skipping"; record_result failed "$cmd"
     fi
   else
-    warn "$cmd: no system package and cargo missing — skipping"
+    warn "$cmd: no system package and cargo missing — skipping"; record_result failed "$cmd"
   fi
 }
 
@@ -52,9 +52,9 @@ _pkg_soft() {
     return 0
   fi
   if pkg_install "$pkg" >/dev/null 2>&1 && has_cmd "$cmd"; then
-    ok "installed $cmd ($pkg)"
+    ok "installed $cmd ($pkg)"; record_result installed "$cmd"
   else
-    warn "$cmd: no packaged install for this platform — install it manually"
+    warn "$cmd: no packaged install for this platform — install it manually"; record_result failed "$cmd"
   fi
 }
 
@@ -97,6 +97,8 @@ else
   _go_install terraform-docs github.com/terraform-docs/terraform-docs@latest
   _go_install dive         github.com/wagoodman/dive@latest
   _go_install cosign       github.com/sigstore/cosign/v2/cmd/cosign@latest
+  _go_install age          filippo.io/age/cmd/age@latest           # modern file encryption
+  _go_install age-keygen   filippo.io/age/cmd/age-keygen@latest    # age key generation
 
   # ---- VCS / CI / workflow --------------------------------------------------
   _go_install glab         gitlab.com/gitlab-org/cli/cmd/glab@latest

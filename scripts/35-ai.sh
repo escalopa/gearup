@@ -36,13 +36,13 @@ else
       return 0
     fi
     if [[ "$GEARUP_OS" == "macos" && "$brewf" != "-" ]] && pkg_install "$brewf" >/dev/null 2>&1 && has_cmd "$cmd"; then
-      ok "installed $cmd ($brewf)"
+      ok "installed $cmd ($brewf)"; record_result installed "$cmd"
       return 0
     fi
     if _ai_ensure_node && run npm install -g "$npmpkg" && has_cmd "$cmd"; then
-      ok "installed $cmd (npm $npmpkg)"
+      ok "installed $cmd (npm $npmpkg)"; record_result installed "$cmd"
     else
-      warn "$cmd: install failed — try 'npm install -g $npmpkg' (needs node), or brew '$brewf'"
+      warn "$cmd: install failed — try 'npm install -g $npmpkg' (needs node), or brew '$brewf'"; record_result failed "$cmd"
     fi
   }
 

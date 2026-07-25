@@ -4,7 +4,9 @@
 package tui
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"sort"
 	"strings"
 
@@ -16,6 +18,60 @@ import (
 	"github.com/escalopa/gearup/internal/catalog"
 	"github.com/escalopa/gearup/internal/runner"
 )
+
+// newResultsFile removes any previous results file and creates a fresh empty one
+// for the next run. Returns "" if a temp file can't be made (results just won't
+// be shown).
+func newResultsFile(prev string) string {
+	if prev != "" {
+		_ = os.Remove(prev)
+	}
+	f, err := os.CreateTemp("", "gearup-results-*.tsv")
+	if err != nil {
+		return ""
+	}
+	name := f.Name()
+	_ = f.Close()
+	return name
+}
+
+// readResults parses the "<status>\t<name>" lines written by the installer into
+// installed / present / failed name lists.
+func readResults(path string) (installed, present, failed []string) {
+	if path == "" {
+		return nil, nil, nil
+	}
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, nil, nil
+	}
+	defer f.Close()
+	seen := map[string]bool{}
+	sc := bufio.NewScanner(f)
+	for sc.Scan() {
+		parts := strings.SplitN(sc.Text(), "\t", 2)
+		if len(parts) != 2 {
+			continue
+		}
+		status, name := parts[0], parts[1]
+		if seen[status+"\t"+name] {
+			continue
+		}
+		seen[status+"\t"+name] = true
+		switch status {
+		case "installed":
+			installed = append(installed, name)
+		case "present":
+			present = append(present, name)
+		case "failed":
+			failed = append(failed, name)
+		}
+	}
+	sort.Strings(installed)
+	sort.Strings(present)
+	sort.Strings(failed)
+	return installed, present, failed
+}
 
 type view int
 
@@ -59,13 +115,17 @@ type model struct {
 	dryRun bool
 
 	// run state
-	vp      viewport.Model
-	spin    spinner.Model
-	lines   []string
-	running bool
-	runDone bool
-	runErr  error
-	run     *runner.Runner
+	vp           viewport.Model
+	spin         spinner.Model
+	lines        []string
+	running      bool
+	runDone      bool
+	runErr       error
+	run          *runner.Runner
+	resultsFile  string
+	resInstalled []string
+	resPresent   []string
+	resFailed    []string
 
 	// doctor scroll
 	docVP viewport.Model
@@ -134,6 +194,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.running = false
 		m.runDone = true
 		m.runErr = msg.Err
+		m.resInstalled, m.resPresent, m.resFailed = readResults(m.resultsFile)
 		m.refreshInstalled()
 		m.docVP.SetContent(m.doctorContent())
 		return m, nil
@@ -223,11 +284,13 @@ func (m model) updateMenu(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		if len(skipped) > 0 {
 			m.lines = append(m.lines, subtleStyle.Render("already installed, skipping: "+strings.Join(skipped, ", ")))
 		}
+		m.resInstalled, m.resPresent, m.resFailed = nil, nil, nil
+		m.resultsFile = newResultsFile(m.resultsFile)
 		m.running = true
 		m.runDone = false
 		m.runErr = nil
 		m.vp.SetContent(strings.Join(m.lines, "\n"))
-		m.run = runner.Start(m.root, jobs, m.dryRun)
+		m.run = runner.Start(m.root, jobs, m.dryRun, m.resultsFile)
 		m.view = runView
 		return m, tea.Batch(m.spin.Tick, m.run.Next())
 	}
@@ -476,11 +539,39 @@ func (m model) viewRun() string {
 	b.WriteString(head + "\n\n")
 	b.WriteString(m.vp.View() + "\n")
 	if m.runDone {
+		b.WriteString(m.resultsSummary() + "\n")
 		b.WriteString(helpStyle.Render(" esc back · q quit · ↑/↓ scroll"))
 	} else {
 		b.WriteString(helpStyle.Render(" running… ↑/↓ scroll"))
 	}
 	return b.String()
+}
+
+// resultsSummary is the post-run tally shown under the log: how many tools were
+// installed, were already present, and failed — with the failed ones named.
+func (m model) resultsSummary() string {
+	if len(m.resInstalled)+len(m.resPresent)+len(m.resFailed) == 0 {
+		return subtleStyle.Render(" no tool changes recorded")
+	}
+	verb := "installed"
+	if m.dryRun {
+		verb = "would install"
+	}
+	line := fmt.Sprintf(" %s  %s  %s",
+		okStyle.Render(fmt.Sprintf("✓ %d %s", len(m.resInstalled), verb)),
+		subtleStyle.Render(fmt.Sprintf("• %d already present", len(m.resPresent))),
+		func() string {
+			s := fmt.Sprintf("✗ %d failed", len(m.resFailed))
+			if len(m.resFailed) > 0 {
+				return missStyle.Render(s)
+			}
+			return subtleStyle.Render(s)
+		}(),
+	)
+	if len(m.resFailed) > 0 {
+		line += "\n " + missStyle.Render("failed: "+strings.Join(m.resFailed, ", "))
+	}
+	return line
 }
 
 func (m model) viewDoctor() string {

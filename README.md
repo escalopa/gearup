@@ -42,7 +42,7 @@ removes the links and blocks.
 | Containers | lazydocker, dive |
 | Workflow | gh, glab, direnv, just, mkcert, act, gitleaks, shfmt, glow, gum |
 | Database | redis-cli, pgcli, usql, lazysql |
-| Security | trivy, hadolint, cosign, gitleaks |
+| Security | trivy, hadolint, cosign, gitleaks, age (+ age-keygen) |
 | AI coding | claude (Claude Code), codex (OpenAI), opencode, gemini-cli — **opt-in**, each via its own channel (brew / npm) |
 | GNU on macOS | coreutils, findutils, gnu-sed, gawk, gnu-tar, grep, gnu-getopt — so `sed`/`awk`/`find`/`date`/`tar` behave like on Linux |
 | Toolchains | Go (official tarball / brew) and Rust (rustup) — they also build everything above that ships via `go install` / `cargo install` |
@@ -83,7 +83,10 @@ gearup doctor    # non-interactive: report which tools are installed / missing
 
 Inside the TUI: `space` selects a whole step, `enter` drills into a step to
 **hand-pick individual tools**, `r` runs your selection with live output, `d`
-toggles dry-run, `D` opens the doctor view, `q` quits. Picking a subset of tools
+toggles dry-run, `D` opens the doctor view, `q` quits. After a run it shows a
+**results summary** — how many tools were installed, were already present, and
+**which ones failed** (by name). The CLI prints the same tally at the end of
+`./install.sh`, and `gearup doctor` reports installed-vs-missing any time. Picking a subset of tools
 just scopes that step (via `GEARUP_ONLY`) — the same idempotent scripts run
 underneath. Build it yourself anytime with `make install`.
 

@@ -241,6 +241,8 @@ var Tools = []Tool{
 	// -- security scanners ----------------------------------------------------
 	{Name: "trivy", Command: "trivy", Desc: "vuln/IaC scanner", Step: "tools", Category: "Security"},
 	{Name: "hadolint", Command: "hadolint", Desc: "Dockerfile linter", Step: "tools", Category: "Security"},
+	{Name: "age", Command: "age", Desc: "modern file encryption", Step: "tools", Category: "Security"},
+	{Name: "age-keygen", Command: "age-keygen", Desc: "age key generation", Step: "tools", Category: "Security"},
 
 	// -- API / proto extras ---------------------------------------------------
 	{Name: "websocat", Command: "websocat", Desc: "WebSocket cURL", Step: "tools", Category: "API extras"},

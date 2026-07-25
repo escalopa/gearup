@@ -28,6 +28,32 @@ run() {
 
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
 
+# ------------------------------------------------------- install results ----
+# When GEARUP_RESULTS names a file, the tool installers append one tab-separated
+# line per tool: "<status>\t<name>" with status = installed | present | failed.
+# install.sh prints a summary from it and the TUI reads it for a results screen.
+record_result() {
+  [[ -n "${GEARUP_RESULTS:-}" ]] || return 0
+  printf '%s\t%s\n' "$1" "$2" >> "$GEARUP_RESULTS"
+}
+
+# gearup_summary — print a one-line tally plus the names of anything that failed.
+# Uses log/warn (never the "ok"/"!!" tool prefixes) so it can't trip the CI
+# "second run is a no-op" check.
+gearup_summary() {
+  [[ -n "${GEARUP_RESULTS:-}" && -s "${GEARUP_RESULTS:-/nonexistent}" ]] || return 0
+  local n_inst n_pres n_fail verb="installed"
+  read -r n_inst n_pres n_fail < <(awk -F'\t' '{c[$1]++} END{printf "%d %d %d\n", c["installed"], c["present"], c["failed"]}' "$GEARUP_RESULTS")
+  [[ "${DRY_RUN:-0}" == "1" ]] && verb="would install"
+  log "summary: $n_inst $verb, $n_pres already present, $n_fail failed"
+  if [[ "$n_fail" -gt 0 ]]; then
+    local failed
+    failed=$(awk -F'\t' '$1=="failed"{print $2}' "$GEARUP_RESULTS" | sort -u | tr '\n' ' ')
+    warn "failed: $failed"
+    log "re-run just those with: gearup  (or ./install.sh <step>) and pick them again"
+  fi
+}
+
 # ------------------------------------------------------------- tool filter ---
 # GEARUP_ONLY is an optional space-separated allow-list of tool names. When it
 # is empty/unset every tool installs (default; what the CLI and CI expect).
@@ -47,7 +73,7 @@ gearup_selected() {
 # the tool/cloud steps so each can run standalone.
 _need() {
   gearup_selected "$1" || return 1
-  if has_cmd "$1"; then skip "$1"; return 1; fi
+  if has_cmd "$1"; then skip "$1"; record_result present "$1"; return 1; fi
   return 0
 }
 
@@ -113,6 +139,7 @@ ensure_pkg() {
   gearup_selected "$cmd" || return 0
   if has_cmd "$cmd"; then
     skip "$cmd"
+    record_result present "$cmd"
     return 0
   fi
   local name
@@ -124,6 +151,7 @@ ensure_pkg() {
   esac
   pkg_install "$name"
   ok "installed $cmd ($name)"
+  record_result installed "$cmd"
 }
 
 # ensure_brew <formula> [select-key]
@@ -137,10 +165,12 @@ ensure_brew() {
   [[ "$GEARUP_PKG" == "brew" ]] || { warn "ensure_brew $formula: not on brew, skipping"; return 0; }
   if brew list --versions "$formula" >/dev/null 2>&1; then
     skip "$formula"
+    record_result present "$key"
     return 0
   fi
   run brew install "$formula"
   ok "installed $formula (brew)"
+  record_result installed "$key"
 }
 
 # ---------------------------------------------------------------- symlinks ---

@@ -34,10 +34,14 @@ type Runner struct {
 	ch chan tea.Msg
 }
 
-// Start launches the jobs in the background and returns a Runner to pump.
-func Start(root string, jobs []Job, dryRun bool) *Runner {
+// Start launches the jobs in the background and returns a Runner to pump. Jobs
+// run strictly one at a time (never concurrently) so parallel package-manager
+// writes can't corrupt each other. When resultsFile is non-empty it is passed
+// to install.sh as GEARUP_RESULTS, giving a machine-readable per-tool outcome
+// log the caller can read once DoneMsg arrives.
+func Start(root string, jobs []Job, dryRun bool, resultsFile string) *Runner {
 	r := &Runner{ch: make(chan tea.Msg, 512)}
-	go r.run(root, jobs, dryRun)
+	go r.run(root, jobs, dryRun, resultsFile)
 	return r
 }
 
@@ -46,9 +50,11 @@ func (r *Runner) Next() tea.Cmd {
 	return func() tea.Msg { return <-r.ch }
 }
 
-func (r *Runner) run(root string, jobs []Job, dryRun bool) {
+func (r *Runner) run(root string, jobs []Job, dryRun bool, resultsFile string) {
+	// Sequential on purpose: one install.sh at a time, awaited to completion
+	// before the next starts.
 	for _, job := range jobs {
-		if err := r.runJob(root, job, dryRun); err != nil {
+		if err := r.runJob(root, job, dryRun, resultsFile); err != nil {
 			r.ch <- DoneMsg{Err: err}
 			return
 		}
@@ -56,7 +62,7 @@ func (r *Runner) run(root string, jobs []Job, dryRun bool) {
 	r.ch <- DoneMsg{}
 }
 
-func (r *Runner) runJob(root string, job Job, dryRun bool) error {
+func (r *Runner) runJob(root string, job Job, dryRun bool, resultsFile string) error {
 	args := []string{filepath.Join(root, "install.sh")}
 	if dryRun {
 		args = append(args, "--dry-run")
@@ -66,6 +72,9 @@ func (r *Runner) runJob(root string, job Job, dryRun bool) error {
 	cmd := exec.Command("bash", args...)
 	cmd.Dir = root
 	cmd.Env = append(os.Environ(), "GEARUP_ROOT="+root)
+	if resultsFile != "" {
+		cmd.Env = append(cmd.Env, "GEARUP_RESULTS="+resultsFile)
+	}
 	if len(job.Only) > 0 {
 		cmd.Env = append(cmd.Env, "GEARUP_ONLY="+strings.Join(job.Only, " "))
 	}

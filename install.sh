@@ -44,6 +44,14 @@ detect_platform
 log "platform: $GEARUP_OS ($GEARUP_PKG)  root: $GEARUP_ROOT"
 [[ "$DRY_RUN" == "1" ]] && log "DRY RUN — nothing will be changed"
 
+# Per-tool install results feed the end-of-run summary (and the TUI's results
+# screen). If the caller (the TUI) provided a file we append to it and leave it
+# for them to read; otherwise we own a temp file and clean it up.
+_gearup_results_owned=0
+if [[ -z "${GEARUP_RESULTS:-}" ]]; then
+  GEARUP_RESULTS="$(mktemp)"; export GEARUP_RESULTS; _gearup_results_owned=1
+fi
+
 should_run() {
   [[ ${#ONLY_STEPS[@]} -eq 0 ]] && return 0
   local s
@@ -63,7 +71,11 @@ for script in "$GEARUP_ROOT"/scripts/*.sh; do
   fi
 done
 
+gearup_summary
+[[ "$_gearup_results_owned" == "1" ]] && rm -f "$GEARUP_RESULTS"
+
 log "done. Open a NEW shell (or 'source ~/.bashrc' / 'source ~/.zshrc'), then try:"
+log "  gearup       → the TUI; 'gearup doctor' reports what's installed vs missing"
 log "  tmux         → prefix is Ctrl-a; Ctrl-a g opens the workspace switcher"
 log "  ws           → fuzzy-jump to any project as its own tmux session"
 log "  nvim         → Space is the leader; Space-f-f finds files"
