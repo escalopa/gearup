@@ -102,10 +102,11 @@
 <text x="418" y="888.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  opencode</tspan><tspan fill="#768390" xml:space="preserve">  opencode (open source)</tspan></text>
 <text x="418" y="925.5" fill="#58a6ff" font-weight="700">Cloud / IaC</text>
 <text x="418" y="944.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  aws</tspan><tspan fill="#768390" xml:space="preserve">  AWS CLI v2</tspan></text>
-<text x="418" y="962.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  helm</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes packages</tspan></text>
-<text x="418" y="981.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  kubectl</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes CLI</tspan></text>
-<text x="418" y="999.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  terraform</tspan><tspan fill="#768390" xml:space="preserve">  IaC</tspan></text>
-<text x="418" y="1018.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  tflint</tspan><tspan fill="#768390" xml:space="preserve">  Terraform linter</tspan></text>
-<text x="418" y="1036.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  yc</tspan><tspan fill="#768390" xml:space="preserve">  Yandex Cloud CLI</tspan></text>
-<text x="22" y="1245" fill="#8b949e"><tspan fill="#d29922">•</tspan> 3 tool(s) missing. Run `gearup` to install.</text>
+<text x="418" y="962.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  gcloud</tspan><tspan fill="#768390" xml:space="preserve">  Google Cloud CLI</tspan></text>
+<text x="418" y="981.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  helm</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes packages</tspan></text>
+<text x="418" y="999.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  kubectl</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes CLI</tspan></text>
+<text x="418" y="1018.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  terraform</tspan><tspan fill="#768390" xml:space="preserve">  IaC</tspan></text>
+<text x="418" y="1036.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  tflint</tspan><tspan fill="#768390" xml:space="preserve">  Terraform linter</tspan></text>
+<text x="418" y="1055.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  yc</tspan><tspan fill="#768390" xml:space="preserve">  Yandex Cloud CLI</tspan></text>
+<text x="22" y="1245" fill="#8b949e"><tspan fill="#d29922">•</tspan> 4 tool(s) missing. Run `gearup` to install.</text>
 </svg>

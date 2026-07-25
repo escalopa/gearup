@@ -264,4 +264,5 @@ var Tools = []Tool{
 	{Name: "tflint", Command: "tflint", Desc: "Terraform linter", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "aws", Command: "aws", Desc: "AWS CLI v2", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "yc", Command: "yc", Desc: "Yandex Cloud CLI", Step: "cloud", Category: "Cloud / IaC"},
+	{Name: "gcloud", Command: "gcloud", Desc: "Google Cloud CLI", Step: "cloud", Category: "Cloud / IaC"},
 }
