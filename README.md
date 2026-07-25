@@ -43,7 +43,7 @@ removes the links and blocks.
 | Workflow | gh, glab, direnv, just, mkcert, act, gitleaks, shfmt, glow, gum |
 | Database | redis-cli, pgcli, usql, lazysql |
 | Security | trivy, hadolint, cosign, gitleaks, age (+ age-keygen) |
-| AI coding | claude (Claude Code), codex (OpenAI), opencode, gemini-cli — **opt-in**, each via its own channel (brew / npm) |
+| AI coding | claude (Claude Code), codex (OpenAI), opencode, gemini-cli, graphify — **opt-in**, each via its own channel (brew / npm / pipx) |
 | GNU on macOS | coreutils, findutils, gnu-sed, gawk, gnu-tar, grep, gnu-getopt — so `sed`/`awk`/`find`/`date`/`tar` behave like on Linux |
 | Toolchains | Go (official tarball / brew) and Rust (rustup) — they also build everything above that ships via `go install` / `cargo install` |
 

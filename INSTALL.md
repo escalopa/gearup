@@ -75,10 +75,11 @@ symlinks · tmux-plugins · shell · cloud · tui`.
 
 ### AI coding tools (opt-in)
 
-The `ai` step installs claude (Claude Code), codex, opencode, and gemini-cli via
-each provider's own channel (Homebrew on macOS, npm elsewhere). Because they come
-from npm/brew rather than the system package manager, a plain full install skips
-them. Install them any of these ways:
+The `ai` step installs claude (Claude Code), codex, opencode, gemini-cli, and
+graphify via each provider's own channel (Homebrew/npm for most; graphify is a
+Python tool installed with uv/pipx/pip). Because they come from npm/brew/pipx
+rather than the system package manager, a plain full install skips them. Install
+them any of these ways:
 
 ```sh
 gearup                      # pick them in the TUI (AI coding category)

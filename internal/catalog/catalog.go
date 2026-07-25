@@ -255,6 +255,7 @@ var Tools = []Tool{
 	{Name: "codex", Command: "codex", Desc: "Codex CLI (OpenAI)", Step: "ai", Category: "AI coding"},
 	{Name: "opencode", Command: "opencode", Desc: "opencode (open source)", Step: "ai", Category: "AI coding"},
 	{Name: "gemini", Command: "gemini", Desc: "Gemini CLI (Google)", Step: "ai", Category: "AI coding"},
+	{Name: "graphify", Command: "graphify", Desc: "codebase knowledge graphs", Step: "ai", Category: "AI coding"},
 
 	// -- heavier cloud CLIs (70-cloud.sh) -------------------------------------
 	{Name: "terraform", Command: "terraform", Desc: "IaC", Step: "cloud", Category: "Cloud / IaC"},

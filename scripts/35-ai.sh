@@ -46,9 +46,46 @@ else
     fi
   }
 
+  # _ai_pip_install <cmd> <pypi-package>
+  # Python-distributed tools: prefer uv, then pipx, then pip --user. Soft.
+  _ai_pip_install() {
+    local cmd=$1 pkg=$2 ok_flag=0
+    _need "$cmd" || return 0
+    if [[ "${DRY_RUN:-0}" == "1" ]]; then
+      log "would install $cmd (uv/pipx/pip package '$pkg')"
+      return 0
+    fi
+    # Ensure at least one Python installer exists (prefer pipx if we must add one).
+    if ! has_cmd uv && ! has_cmd pipx && ! has_cmd pip3 && ! has_cmd pip; then
+      if [[ "$GEARUP_OS" == "macos" ]]; then
+        pkg_install pipx >/dev/null 2>&1 || true
+      else
+        ensure_pkg pipx pipx pipx python-pipx pipx >/dev/null 2>&1 || true
+      fi
+    fi
+    if has_cmd uv; then
+      if run uv tool install "$pkg"; then ok_flag=1; fi
+    elif has_cmd pipx; then
+      if run pipx install "$pkg"; then ok_flag=1; fi
+    elif has_cmd pip3; then
+      if run pip3 install --user "$pkg"; then ok_flag=1; fi
+    elif has_cmd pip; then
+      if run pip install --user "$pkg"; then ok_flag=1; fi
+    fi
+    if [[ "$ok_flag" == "1" ]] && has_cmd "$cmd"; then
+      ok "installed $cmd ($pkg)"; record_result installed "$cmd"
+    else
+      warn "$cmd: install failed — try 'uv tool install $pkg' or 'pipx install $pkg'"; record_result failed "$cmd"
+    fi
+  }
+
   # command      brew formula   npm package
   _ai_install claude    -             @anthropic-ai/claude-code   # Claude Code (Anthropic)
   _ai_install codex     codex         @openai/codex               # Codex CLI (OpenAI)
   _ai_install opencode  opencode      opencode-ai                 # opencode (open source)
   _ai_install gemini    gemini-cli    @google/gemini-cli          # Gemini CLI (Google)
+
+  # Python-distributed. PyPI package is "graphifyy" (double-y); binary is "graphify".
+  # After install, run `graphify install` to register it with your AI assistant(s).
+  _ai_pip_install graphify graphifyy
 fi
