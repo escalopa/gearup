@@ -6,11 +6,11 @@ LDFLAGS := -X main.version=$(VERSION)
 .PHONY: build install run doctor tidy fmt vet test clean version snapshot release-check
 
 build: ## build the TUI into ./gearup
-	go build -ldflags "$(LDFLAGS)" -o gearup ./cmd/gearup
+	go build -buildvcs=false -ldflags "$(LDFLAGS)" -o gearup ./cmd/gearup
 
 install: ## build and install to ~/.local/bin/gearup
 	@mkdir -p $(dir $(BIN))
-	go build -ldflags "$(LDFLAGS)" -o $(BIN) ./cmd/gearup
+	go build -buildvcs=false -ldflags "$(LDFLAGS)" -o $(BIN) ./cmd/gearup
 	@echo "installed $(BIN)"
 
 run: ## run the TUI from source

@@ -26,7 +26,9 @@ elif ! _tui_needs_build; then
 else
   run mkdir -p "$HOME/.local/bin"
   log "building gearup TUI"
-  if (cd "$GEARUP_ROOT" && run go build -o "$_gearup_tui_bin" ./cmd/gearup); then
+  # -buildvcs=false: skip git VCS stamping, which fails when the repo dir has
+  # "dubious ownership" (e.g. CI containers); our version comes from ldflags.
+  if (cd "$GEARUP_ROOT" && run go build -buildvcs=false -o "$_gearup_tui_bin" ./cmd/gearup); then
     ok "built gearup -> $_gearup_tui_bin"
   else
     warn "gearup TUI build failed — run 'make build' in $GEARUP_ROOT to see why"
