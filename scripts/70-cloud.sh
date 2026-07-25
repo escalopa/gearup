@@ -73,6 +73,17 @@ install_awscli() {
   fi
 }
 
+# ---- yandex cloud cli -------------------------------------------------------
+install_yc() {
+  # Official cross-platform installer. -n keeps it from editing rc files (gearup
+  # already puts ~/.local/bin on PATH); we symlink the binary there.
+  run curl -fsSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh -o /tmp/yc-install.sh || return 1
+  run bash /tmp/yc-install.sh -i "$HOME/.yandex-cloud" -n || return 1
+  run rm -f /tmp/yc-install.sh
+  run mkdir -p "$HOME/.local/bin"
+  run ln -sf "$HOME/.yandex-cloud/bin/yc" "$HOME/.local/bin/yc"
+}
+
 # name=install-function ; command name is the GEARUP_ONLY / has_cmd key.
 CLOUD_TOOLS=(
   "terraform=install_terraform"
@@ -80,6 +91,7 @@ CLOUD_TOOLS=(
   "helm=install_helm"
   "tflint=install_tflint"
   "aws=install_awscli"
+  "yc=install_yc"
 )
 
 for entry in "${CLOUD_TOOLS[@]}"; do

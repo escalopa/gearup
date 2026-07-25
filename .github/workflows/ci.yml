@@ -14,7 +14,7 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y shellcheck
           shellcheck install.sh uninstall.sh bootstrap.sh lib/*.sh scripts/*.sh bin/ws
-          shellcheck -s sh config/shell/gearup.sh
+          shellcheck -s sh config/shell/gearup.sh config/shell/aliases.sh
 
   go-build:
     runs-on: ubuntu-latest

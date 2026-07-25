@@ -34,30 +34,8 @@ export VISUAL=nvim
 # BEFORE the gearup block, or export it here.
 export WS_ROOTS="${WS_ROOTS:-$HOME/work:$HOME/projects:$HOME/src}"
 
-# ---- aliases ----------------------------------------------------------------
-alias v='nvim'
-alias t='tmux'
-alias ta='tmux attach || tmux new'
-alias lg='lazygit'
-alias gs='git status -sb'
-alias gd='git diff'
-alias gl='git log --oneline --graph -15'
-if command -v eza >/dev/null 2>&1; then
-  alias ls='eza'
-  alias ll='eza -la --git'
-  alias lt='eza --tree --level=2'
-else
-  alias ll='ls -la'
-fi
-command -v bat >/dev/null 2>&1 && alias cat='bat --paging=never'
-# modern replacements (interactive-only; scripts still call the real binaries)
-command -v dust  >/dev/null 2>&1 && alias du='dust'
-command -v procs >/dev/null 2>&1 && alias ps='procs'
-command -v btm   >/dev/null 2>&1 && alias top='btm'
-command -v tldr  >/dev/null 2>&1 && alias help='tldr'
-command -v lazydocker >/dev/null 2>&1 && alias lzd='lazydocker'
-command -v k9s   >/dev/null 2>&1 && alias k='kubectl'
-command -v terraform >/dev/null 2>&1 && alias tf='terraform'
+# ---- aliases (kept in their own file; edit config/shell/aliases.sh) --------
+[ -f "$HOME/.config/gearup/aliases.sh" ] && . "$HOME/.config/gearup/aliases.sh"
 
 # ---- functions ---------------------------------------------------------------
 mkcd() { mkdir -p "$1" && cd "$1" || return; }

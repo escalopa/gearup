@@ -49,7 +49,7 @@ doctor`** any time for a live ✓/✗ report of what's present on *your* machine
 | Database | `tools` | redis-cli · pgcli · usql |
 | Security | `tools` | trivy · hadolint · age · age-keygen |
 | API extras | `tools` | websocat · tldr · jless · watchexec |
-| Cloud / IaC | `cloud` | terraform · kubectl · helm · tflint · aws |
+| Cloud / IaC | `cloud` | terraform · kubectl · helm · tflint · aws · yc (Yandex Cloud) |
 | AI coding *(opt-in)* | `ai` | claude · codex · opencode · gemini · graphify |
 
 Everything is à la carte: the **`gearup` TUI** (below) lets you install a whole
@@ -77,7 +77,10 @@ the TUI, run `./install.sh ai`, or set `GEARUP_AI=1 ./install.sh`.
   trouble.nvim diagnostics, nvim-surround, treesitter, gitsigns, and
   which-key so the keymap teaches itself.
 - **Shell block** for bash *and* zsh: PATH wiring, GNU userland on macOS,
-  zoxide, fzf keybindings, zsh plugins, starship, and the `ws` switcher.
+  zoxide, fzf keybindings, zsh plugins, starship, the `ws` switcher, and a
+  dedicated **[aliases file](config/shell/aliases.sh)** (git `g`/`ga`/`gcm`,
+  terraform `tf`/`tfp`/`tfa`, kubectl `k`/`kgp`, docker, go, … — each guarded so
+  it only exists when the tool does). Edit that one file to tweak them.
 
 ## The `gearup` TUI
 

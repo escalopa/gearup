@@ -9,6 +9,7 @@ ensure_symlink "$GEARUP_ROOT/config/gitconfig-gearup" "$HOME/.gitconfig-gearup"
 ensure_symlink "$GEARUP_ROOT/config/editorconfig"     "$HOME/.editorconfig"
 ensure_symlink "$GEARUP_ROOT/config/starship.toml"    "$HOME/.config/starship.toml"
 ensure_symlink "$GEARUP_ROOT/config/shell/gearup.zsh" "$HOME/.config/gearup/shell.zsh"
+ensure_symlink "$GEARUP_ROOT/config/shell/aliases.sh" "$HOME/.config/gearup/aliases.sh"
 
 # The workspace switcher script, on PATH via ~/.local/bin.
 run mkdir -p "$HOME/.local/bin"
