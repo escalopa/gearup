@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="812" height="1261" viewBox="0 0 812 1261" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13">
+<rect x="0" y="0" width="812" height="1261" rx="10" fill="#0d1117" stroke="#30363d"/>
+<circle cx="20" cy="20" r="6" fill="#ff5f56"/><circle cx="40" cy="20" r="6" fill="#ffbd2e"/><circle cx="60" cy="20" r="6" fill="#27c93f"/>
+<text x="406.0" y="24" fill="#8b949e" text-anchor="middle">$ gearup doctor</text>
+<line x1="0" y1="40" x2="812" y2="40" stroke="#30363d"/>
+<text x="22" y="56.0" fill="#58a6ff" font-weight="700">Core packages</text>
+<text x="22" y="74.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  bat</tspan><tspan fill="#768390" xml:space="preserve">  cat with wings</tspan></text>
+<text x="22" y="93.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  delta</tspan><tspan fill="#768390" xml:space="preserve">  better git diffs</tspan></text>
+<text x="22" y="111.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  dig</tspan><tspan fill="#768390" xml:space="preserve">  DNS lookup</tspan></text>
+<text x="22" y="130.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  fd</tspan><tspan fill="#768390" xml:space="preserve">  fast find</tspan></text>
+<text x="22" y="148.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  fzf</tspan><tspan fill="#768390" xml:space="preserve">  fuzzy finder</tspan></text>
+<text x="22" y="167.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  git</tspan><tspan fill="#768390" xml:space="preserve">  version control</tspan></text>
+<text x="22" y="185.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  htop</tspan><tspan fill="#768390" xml:space="preserve">  process viewer</tspan></text>
+<text x="22" y="204.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  jq</tspan><tspan fill="#768390" xml:space="preserve">  JSON processor</tspan></text>
+<text x="22" y="222.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  neovim</tspan><tspan fill="#768390" xml:space="preserve">  editor</tspan></text>
+<text x="22" y="241.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  ripgrep</tspan><tspan fill="#768390" xml:space="preserve">  fast grep</tspan></text>
+<text x="22" y="259.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  shellcheck</tspan><tspan fill="#768390" xml:space="preserve">  shell linter</tspan></text>
+<text x="22" y="278.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  tmux</tspan><tspan fill="#768390" xml:space="preserve">  terminal multiplexer</tspan></text>
+<text x="22" y="296.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  tree</tspan><tspan fill="#768390" xml:space="preserve">  directory tree</tspan></text>
+<text x="22" y="315.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  zoxide</tspan><tspan fill="#768390" xml:space="preserve">  smarter cd</tspan></text>
+<text x="22" y="352.0" fill="#58a6ff" font-weight="700">GNU (macOS)</text>
+<text x="22" y="370.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  coreutils</tspan><tspan fill="#768390" xml:space="preserve">  GNU ls/date/du/sort…</tspan></text>
+<text x="22" y="389.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  findutils</tspan><tspan fill="#768390" xml:space="preserve">  GNU find/xargs</tspan></text>
+<text x="22" y="407.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gawk</tspan><tspan fill="#768390" xml:space="preserve">  GNU awk</tspan></text>
+<text x="22" y="426.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gnu-sed</tspan><tspan fill="#768390" xml:space="preserve">  GNU sed</tspan></text>
+<text x="22" y="444.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gnu-tar</tspan><tspan fill="#768390" xml:space="preserve">  GNU tar</tspan></text>
+<text x="22" y="463.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  grep</tspan><tspan fill="#768390" xml:space="preserve">  GNU grep (-P)</tspan></text>
+<text x="22" y="481.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  moreutils</tspan><tspan fill="#768390" xml:space="preserve">  sponge/ts/vidir…</tspan></text>
+<text x="22" y="500.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  wget</tspan><tspan fill="#768390" xml:space="preserve">  GNU wget</tspan></text>
+<text x="22" y="537.0" fill="#58a6ff" font-weight="700">Shell</text>
+<text x="22" y="555.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  starship</tspan><tspan fill="#768390" xml:space="preserve">  cross-shell prompt</tspan></text>
+<text x="22" y="574.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  zsh</tspan><tspan fill="#768390" xml:space="preserve">  z shell</tspan></text>
+<text x="22" y="611.0" fill="#58a6ff" font-weight="700">Go toolchain</text>
+<text x="22" y="629.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  air</tspan><tspan fill="#768390" xml:space="preserve">  live reload</tspan></text>
+<text x="22" y="648.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  delve</tspan><tspan fill="#768390" xml:space="preserve">  Go debugger</tspan></text>
+<text x="22" y="666.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gofumpt</tspan><tspan fill="#768390" xml:space="preserve">  stricter gofmt</tspan></text>
+<text x="22" y="685.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  goimports</tspan><tspan fill="#768390" xml:space="preserve">  imports formatter</tspan></text>
+<text x="22" y="703.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  golangci-lint</tspan><tspan fill="#768390" xml:space="preserve">  Go linter</tspan></text>
+<text x="22" y="722.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  goose</tspan><tspan fill="#768390" xml:space="preserve">  DB migrations</tspan></text>
+<text x="22" y="740.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gopls</tspan><tspan fill="#768390" xml:space="preserve">  Go LSP</tspan></text>
+<text x="22" y="759.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  mockgen</tspan><tspan fill="#768390" xml:space="preserve">  mock generator</tspan></text>
+<text x="22" y="796.0" fill="#58a6ff" font-weight="700">Backend / API</text>
+<text x="22" y="814.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  buf</tspan><tspan fill="#768390" xml:space="preserve">  protobuf tooling</tspan></text>
+<text x="22" y="833.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  evans</tspan><tspan fill="#768390" xml:space="preserve">  gRPC REPL</tspan></text>
+<text x="22" y="851.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  grpcui</tspan><tspan fill="#768390" xml:space="preserve">  gRPC web UI</tspan></text>
+<text x="22" y="870.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  grpcurl</tspan><tspan fill="#768390" xml:space="preserve">  gRPC cURL</tspan></text>
+<text x="22" y="888.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  hey</tspan><tspan fill="#768390" xml:space="preserve">  HTTP load tester</tspan></text>
+<text x="22" y="907.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  migrate</tspan><tspan fill="#768390" xml:space="preserve">  golang-migrate</tspan></text>
+<text x="22" y="925.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  protoc-gen-go</tspan><tspan fill="#768390" xml:space="preserve">  protobuf Go plugin</tspan></text>
+<text x="22" y="944.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  protoc-gen-go-grpc</tspan><tspan fill="#768390" xml:space="preserve">  gRPC Go plugin</tspan></text>
+<text x="22" y="962.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  sqlc</tspan><tspan fill="#768390" xml:space="preserve">  SQL → typed Go</tspan></text>
+<text x="22" y="999.5" fill="#58a6ff" font-weight="700">Git &amp; TUIs</text>
+<text x="22" y="1018.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  lazydocker</tspan><tspan fill="#768390" xml:space="preserve">  docker TUI</tspan></text>
+<text x="22" y="1036.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  lazygit</tspan><tspan fill="#768390" xml:space="preserve">  git TUI</tspan></text>
+<text x="22" y="1055.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  lazysql</tspan><tspan fill="#768390" xml:space="preserve">  SQL TUI</tspan></text>
+<text x="22" y="1073.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  yq</tspan><tspan fill="#768390" xml:space="preserve">  YAML jq</tspan></text>
+<text x="22" y="1110.5" fill="#58a6ff" font-weight="700">Devops</text>
+<text x="22" y="1129.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  cosign</tspan><tspan fill="#768390" xml:space="preserve">  sign/verify artifacts</tspan></text>
+<text x="22" y="1147.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  dive</tspan><tspan fill="#768390" xml:space="preserve">  docker image explorer</tspan></text>
+<text x="22" y="1166.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  k9s</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes TUI</tspan></text>
+<text x="22" y="1184.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  terraform-docs</tspan><tspan fill="#768390" xml:space="preserve">  TF module docs</tspan></text>
+<text x="418" y="56.0" fill="#58a6ff" font-weight="700">Workflow</text>
+<text x="418" y="74.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  act</tspan><tspan fill="#768390" xml:space="preserve">  run GH Actions locally</tspan></text>
+<text x="418" y="93.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  direnv</tspan><tspan fill="#768390" xml:space="preserve">  per-project env</tspan></text>
+<text x="418" y="111.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gh</tspan><tspan fill="#768390" xml:space="preserve">  GitHub CLI</tspan></text>
+<text x="418" y="130.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gitleaks</tspan><tspan fill="#768390" xml:space="preserve">  secret scanner</tspan></text>
+<text x="418" y="148.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  glab</tspan><tspan fill="#768390" xml:space="preserve">  GitLab CLI</tspan></text>
+<text x="418" y="167.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  glow</tspan><tspan fill="#768390" xml:space="preserve">  markdown reader</tspan></text>
+<text x="418" y="185.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gum</tspan><tspan fill="#768390" xml:space="preserve">  shell TUI toolkit</tspan></text>
+<text x="418" y="204.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  just</tspan><tspan fill="#768390" xml:space="preserve">  command runner</tspan></text>
+<text x="418" y="222.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  mkcert</tspan><tspan fill="#768390" xml:space="preserve">  local TLS certs</tspan></text>
+<text x="418" y="241.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  shfmt</tspan><tspan fill="#768390" xml:space="preserve">  shell formatter</tspan></text>
+<text x="418" y="278.0" fill="#58a6ff" font-weight="700">Modern CLI</text>
+<text x="418" y="296.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  bottom</tspan><tspan fill="#768390" xml:space="preserve">  system monitor</tspan></text>
+<text x="418" y="315.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  dust</tspan><tspan fill="#768390" xml:space="preserve">  nicer du</tspan></text>
+<text x="418" y="333.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  eza</tspan><tspan fill="#768390" xml:space="preserve">  modern ls</tspan></text>
+<text x="418" y="352.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  gitui</tspan><tspan fill="#768390" xml:space="preserve">  git TUI (rust)</tspan></text>
+<text x="418" y="370.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  hyperfine</tspan><tspan fill="#768390" xml:space="preserve">  benchmarking</tspan></text>
+<text x="418" y="389.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  procs</tspan><tspan fill="#768390" xml:space="preserve">  nicer ps</tspan></text>
+<text x="418" y="407.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  sd</tspan><tspan fill="#768390" xml:space="preserve">  nicer sed</tspan></text>
+<text x="418" y="426.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  tokei</tspan><tspan fill="#768390" xml:space="preserve">  count code</tspan></text>
+<text x="418" y="444.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  xh</tspan><tspan fill="#768390" xml:space="preserve">  friendly HTTP client</tspan></text>
+<text x="418" y="481.5" fill="#58a6ff" font-weight="700">Database</text>
+<text x="418" y="500.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  pgcli</tspan><tspan fill="#768390" xml:space="preserve">  Postgres REPL</tspan></text>
+<text x="418" y="518.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  redis-cli</tspan><tspan fill="#768390" xml:space="preserve">  Redis client</tspan></text>
+<text x="418" y="537.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  usql</tspan><tspan fill="#768390" xml:space="preserve">  universal SQL CLI</tspan></text>
+<text x="418" y="574.0" fill="#58a6ff" font-weight="700">Security</text>
+<text x="418" y="592.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  age</tspan><tspan fill="#768390" xml:space="preserve">  modern file encryption</tspan></text>
+<text x="418" y="611.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  age-keygen</tspan><tspan fill="#768390" xml:space="preserve">  age key generation</tspan></text>
+<text x="418" y="629.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  hadolint</tspan><tspan fill="#768390" xml:space="preserve">  Dockerfile linter</tspan></text>
+<text x="418" y="648.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  trivy</tspan><tspan fill="#768390" xml:space="preserve">  vuln/IaC scanner</tspan></text>
+<text x="418" y="685.0" fill="#58a6ff" font-weight="700">API extras</text>
+<text x="418" y="703.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  jless</tspan><tspan fill="#768390" xml:space="preserve">  JSON/YAML pager</tspan></text>
+<text x="418" y="722.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  tldr</tspan><tspan fill="#768390" xml:space="preserve">  fast man pages</tspan></text>
+<text x="418" y="740.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  watchexec</tspan><tspan fill="#768390" xml:space="preserve">  run cmd on change</tspan></text>
+<text x="418" y="759.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  websocat</tspan><tspan fill="#768390" xml:space="preserve">  WebSocket cURL</tspan></text>
+<text x="418" y="796.0" fill="#58a6ff" font-weight="700">AI coding</text>
+<text x="418" y="814.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  claude</tspan><tspan fill="#768390" xml:space="preserve">  Claude Code (Anthropic)</tspan></text>
+<text x="418" y="833.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  codex</tspan><tspan fill="#768390" xml:space="preserve">  Codex CLI (OpenAI)</tspan></text>
+<text x="418" y="851.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  gemini</tspan><tspan fill="#768390" xml:space="preserve">  Gemini CLI (Google)</tspan></text>
+<text x="418" y="870.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  graphify</tspan><tspan fill="#768390" xml:space="preserve">  codebase knowledge graphs</tspan></text>
+<text x="418" y="888.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  opencode</tspan><tspan fill="#768390" xml:space="preserve">  opencode (open source)</tspan></text>
+<text x="418" y="925.5" fill="#58a6ff" font-weight="700">Cloud / IaC</text>
+<text x="418" y="944.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  aws</tspan><tspan fill="#768390" xml:space="preserve">  AWS CLI v2</tspan></text>
+<text x="418" y="962.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  helm</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes packages</tspan></text>
+<text x="418" y="981.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  kubectl</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes CLI</tspan></text>
+<text x="418" y="999.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  terraform</tspan><tspan fill="#768390" xml:space="preserve">  IaC</tspan></text>
+<text x="418" y="1018.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  tflint</tspan><tspan fill="#768390" xml:space="preserve">  Terraform linter</tspan></text>
+<text x="22" y="1245" fill="#8b949e"><tspan fill="#d29922">•</tspan> 23 tool(s) missing. Run `gearup` to install.</text>
+</svg>
