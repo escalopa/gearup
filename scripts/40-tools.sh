@@ -32,8 +32,11 @@ _pkg_or_cargo() {
     ok "installed $cmd ($pkg)"
   elif has_cmd cargo; then
     log "cargo install $crate (building from source, may take a minute)"
-    run cargo install --locked "$crate"
-    ok "installed $cmd (cargo)"
+    if run cargo install --locked "$crate"; then
+      ok "installed $cmd (cargo)"
+    else
+      warn "$cmd: cargo build failed — skipping"
+    fi
   else
     warn "$cmd: no system package and cargo missing — skipping"
   fi
