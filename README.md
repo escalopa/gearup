@@ -31,28 +31,37 @@ removes the links and blocks.
 
 ## What you get
 
-| | Tools |
-|---|---|
-| Terminal | tmux, Neovim, fzf, ripgrep, fd, bat, eza, zoxide, jq, yq, htop, tree; modern extras: dust, procs, sd, hyperfine, tokei, bottom, gitui |
-| Shell | **zsh** + autosuggestions/syntax-highlighting/completions/history-search, and the **starship** prompt (git/go/k8s/aws/terraform aware) |
-| Git | delta diffs, lazygit, gitui, sane aliases (via an *included* gitconfig — yours is untouched) |
-| Go | toolchain + gopls, golangci-lint, dlv, air, goose, mockgen, goimports, gofumpt |
-| Backend / API | grpcurl, grpcui, evans, buf, sqlc, protoc-gen-go(-grpc), golang-migrate, hey, usql, xh, dig |
-| IaC / Cloud | **terraform**, tflint, terraform-docs, kubectl, helm, k9s, aws-cli |
-| Containers | lazydocker, dive |
-| Workflow | gh, glab, direnv, just, mkcert, act, gitleaks, shfmt, glow, gum |
-| Database | redis-cli, pgcli, usql, lazysql |
-| Security | trivy, hadolint, cosign, gitleaks, age (+ age-keygen) |
-| AI coding | claude (Claude Code), codex (OpenAI), opencode, gemini-cli, graphify — **opt-in**, each via its own channel (brew / npm / pipx) |
-| GNU on macOS | coreutils, findutils, gnu-sed, gawk, gnu-tar, grep, gnu-getopt — so `sed`/`awk`/`find`/`date`/`tar` behave like on Linux |
-| Toolchains | Go (official tarball / brew) and Rust (rustup) — they also build everything above that ships via `go install` / `cargo install` |
+These are the exact tools `gearup` installs, grouped as they appear in the TUI
+(the `Step` column is the `install.sh` step / TUI category). Run **`gearup
+doctor`** any time for a live ✓/✗ report of what's present on *your* machine.
 
-Everything is à la carte: the **`gearup` TUI** (below) lets you install whole
-categories or hand-pick individual tools, and shows what's already present.
+| Category | Step | Tools |
+|---|---|---|
+| Core packages | `packages` | git · tmux · neovim · ripgrep · fzf · fd · bat · jq · zoxide · delta · htop · tree · shellcheck · dig |
+| GNU userland (macOS only) | `gnu` | coreutils · findutils · gnu-sed · gawk · gnu-tar · grep · wget · moreutils — so `sed`/`awk`/`find`/`date`/`tar` match Linux |
+| Shell | `zsh` | zsh (+ autosuggestions, syntax-highlighting, completions, history-search) · starship |
+| Go toolchain | `tools` | gopls · golangci-lint · delve · air · goose · mockgen · goimports · gofumpt |
+| Backend / API | `tools` | grpcurl · grpcui · evans · buf · sqlc · protoc-gen-go · protoc-gen-go-grpc · migrate · hey |
+| Git & TUIs | `tools` | lazygit · lazydocker · lazysql · yq |
+| Devops | `tools` | k9s · terraform-docs · dive · cosign |
+| Workflow | `tools` | gh · glab · direnv · just · mkcert · act · gitleaks · shfmt · glow · gum |
+| Modern CLI | `tools` | eza · xh · dust · procs · sd · hyperfine · tokei · bottom · gitui |
+| Database | `tools` | redis-cli · pgcli · usql |
+| Security | `tools` | trivy · hadolint · age · age-keygen |
+| API extras | `tools` | websocat · tldr · jless · watchexec |
+| Cloud / IaC | `cloud` | terraform · kubectl · helm · tflint · aws |
+| AI coding *(opt-in)* | `ai` | claude · codex · opencode · gemini · graphify |
 
-The **AI coding** CLIs are opt-in (they install from npm/brew, outside the system
-package manager). Pick them in the TUI, or run `./install.sh ai` /
-`GEARUP_AI=1 ./install.sh`; a plain full install skips them.
+Everything is à la carte: the **`gearup` TUI** (below) lets you install a whole
+step or hand-pick individual tools, and shows what's already present before it
+runs. Toolchains — **Go** (official tarball / brew) and **Rust** (rustup) — are
+installed as needed; they also build the tools above that ship via `go install`
+/ `cargo install`.
+
+The **AI coding** step (`ai`) is **opt-in** — those CLIs install from channels
+outside the system package manager (claude/codex/opencode/gemini via Homebrew or
+npm, graphify via uv/pipx/pip), so a plain full install skips them. Pick them in
+the TUI, run `./install.sh ai`, or set `GEARUP_AI=1 ./install.sh`.
 
 …plus opinionated, portable configs, symlinked from this repo, so a
 `git pull` updates every machine you own:
