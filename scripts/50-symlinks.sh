@@ -7,6 +7,8 @@ ensure_symlink "$GEARUP_ROOT/config/tmux.conf"        "$HOME/.tmux.conf"
 ensure_symlink "$GEARUP_ROOT/config/nvim"             "$HOME/.config/nvim"
 ensure_symlink "$GEARUP_ROOT/config/gitconfig-gearup" "$HOME/.gitconfig-gearup"
 ensure_symlink "$GEARUP_ROOT/config/editorconfig"     "$HOME/.editorconfig"
+ensure_symlink "$GEARUP_ROOT/config/starship.toml"    "$HOME/.config/starship.toml"
+ensure_symlink "$GEARUP_ROOT/config/shell/gearup.zsh" "$HOME/.config/gearup/shell.zsh"
 
 # The workspace switcher script, on PATH via ~/.local/bin.
 run mkdir -p "$HOME/.local/bin"

@@ -62,6 +62,15 @@ Print this. Tape it somewhere. Prefix = `Ctrl-a`, Leader = `Space`.
 | `]h` / `[h` | next / prev git hunk |
 | `Space g p` / `Space g b` / `Space g r` | preview hunk / blame / reset hunk |
 
+## gearup TUI
+
+| Command / Key | Action |
+|---|---|
+| `gearup` | interactive installer: pick steps or individual tools |
+| `gearup doctor` | report installed / missing tools |
+| `space` / `enter` | select whole step / drill into its tools |
+| `r` / `d` / `D` / `q` | run selection / dry-run / doctor / quit |
+
 ## Shell
 
 | Command | Action |
@@ -70,5 +79,17 @@ Print this. Tape it somewhere. Prefix = `Ctrl-a`, Leader = `Space`.
 | `z foo` | zoxide: cd to the `foo` dir you visit most |
 | `Ctrl-r` / `Ctrl-t` | fuzzy history / fuzzy file insert |
 | `vg <pattern>` | grep repo, open pick in nvim at the line |
-| `lg` | lazygit |
+| `lg` / `lzd` | lazygit / lazydocker |
 | `v` / `ta` | nvim / tmux attach |
+| `tf` / `k` | terraform / kubectl |
+| `du` / `ps` / `top` | dust / procs / btm (modern replacements) |
+
+## Devops
+
+| Command | Action |
+|---|---|
+| `terraform` / `tf` | IaC — plan/apply; `tflint`, `terraform-docs` alongside |
+| `k9s` | Kubernetes TUI; `kubectl`, `helm` for the CLI |
+| `k get pods` | `k` is aliased to `kubectl` |
+| `dive <image>` | explore a docker image's layers |
+| `trivy image <img>` | scan an image for vulns; `hadolint` lints Dockerfiles |

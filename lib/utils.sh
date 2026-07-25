@@ -28,6 +28,29 @@ run() {
 
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
 
+# ------------------------------------------------------------- tool filter ---
+# GEARUP_ONLY is an optional space-separated allow-list of tool names. When it
+# is empty/unset every tool installs (default; what the CLI and CI expect).
+# When set, only the named tools are touched — the TUI uses this to install a
+# user-picked subset. Keyed by command name (terraform, gh, dust, ...).
+gearup_selected() {
+  [[ -z "${GEARUP_ONLY:-}" ]] && return 0
+  local want=$1 t
+  for t in $GEARUP_ONLY; do
+    [[ "$t" == "$want" ]] && return 0
+  done
+  return 1
+}
+
+# _need <cmd> — true when <cmd> is selected AND missing (so we should install
+# it). Prints the "already done" skip line when it is already present. Shared by
+# the tool/cloud steps so each can run standalone.
+_need() {
+  gearup_selected "$1" || return 1
+  if has_cmd "$1"; then skip "$1"; return 1; fi
+  return 0
+}
+
 # ------------------------------------------------------------ OS detection ---
 # Sets: GEARUP_OS (macos|linux), GEARUP_PKG (brew|apt|dnf|pacman)
 detect_platform() {
@@ -87,6 +110,7 @@ pkg_update_index() {
 ensure_pkg() {
   local cmd=$1 apt_name=$2
   local dnf_name=${3:-$apt_name} pacman_name=${4:-$apt_name} brew_name=${5:-$apt_name}
+  gearup_selected "$cmd" || return 0
   if has_cmd "$cmd"; then
     skip "$cmd"
     return 0
@@ -100,6 +124,23 @@ ensure_pkg() {
   esac
   pkg_install "$name"
   ok "installed $cmd ($name)"
+}
+
+# ensure_brew <formula> [select-key]
+# macOS only. Installs a Homebrew formula unless already present. Idempotent via
+# `brew list --versions` (some formulae ship no command of their own — e.g. GNU
+# coreutils — so a has_cmd probe is not enough). select-key defaults to the
+# formula name and is what GEARUP_ONLY matches against.
+ensure_brew() {
+  local formula=$1 key=${2:-$1}
+  gearup_selected "$key" || return 0
+  [[ "$GEARUP_PKG" == "brew" ]] || { warn "ensure_brew $formula: not on brew, skipping"; return 0; }
+  if brew list --versions "$formula" >/dev/null 2>&1; then
+    skip "$formula"
+    return 0
+  fi
+  run brew install "$formula"
+  ok "installed $formula (brew)"
 }
 
 # ---------------------------------------------------------------- symlinks ---

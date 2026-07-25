@@ -6,6 +6,12 @@ LOCAL_NOTES.md
 demo/services/users/users
 demo/services/orders/orders
 
+# local TUI build artifact (make build); the installed copy lives in ~/.local/bin
+/gearup
+
+# GoReleaser output (make snapshot)
+/dist/
+
 # editor droppings
 *.swp
 .DS_Store
