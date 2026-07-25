@@ -86,18 +86,34 @@ the friendly front-end to everything above — it does not replace the scripts,
 it drives them, so the idempotency guarantees still hold.
 
 ```sh
-gearup           # interactive: pick steps or individual tools, watch them install
-gearup doctor    # non-interactive: report which tools are installed / missing
+gearup            # interactive: pick steps or individual tools, watch them install
+gearup doctor     # non-interactive: report which tools are installed / missing
+gearup --version  # print the version
 ```
+
+`gearup doctor` prints a live inventory of the whole catalog — green ✓ for
+what's already on your machine, grey ✗ for what's missing — and exits non-zero
+when anything is missing (handy in CI):
+
+![gearup doctor output](docs/gearup-doctor.svg)
 
 Inside the TUI: `space` selects a whole step, `enter` drills into a step to
 **hand-pick individual tools**, `r` runs your selection with live output, `d`
 toggles dry-run, `D` opens the doctor view, `q` quits. After a run it shows a
 **results summary** — how many tools were installed, were already present, and
 **which ones failed** (by name). The CLI prints the same tally at the end of
-`./install.sh`, and `gearup doctor` reports installed-vs-missing any time. Picking a subset of tools
-just scopes that step (via `GEARUP_ONLY`) — the same idempotent scripts run
-underneath. Build it yourself anytime with `make install`.
+`./install.sh`. Picking a subset of tools just scopes that step (via
+`GEARUP_ONLY`) — the same idempotent scripts run underneath.
+
+Build and run it yourself from a clone (no system changes needed):
+
+```sh
+make build          # compile ./gearup
+./gearup doctor     # or: ./gearup --version, ./gearup
+
+# regenerate the screenshot above from live output:
+./gearup doctor > /tmp/doctor.txt && python3 docs/gen-doctor-svg.py
+```
 
 ## Learn the workflow
 
