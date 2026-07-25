@@ -28,6 +28,55 @@ run() {
 
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
 
+# ------------------------------------------------------- install results ----
+# When GEARUP_RESULTS names a file, the tool installers append one tab-separated
+# line per tool: "<status>\t<name>" with status = installed | present | failed.
+# install.sh prints a summary from it and the TUI reads it for a results screen.
+record_result() {
+  [[ -n "${GEARUP_RESULTS:-}" ]] || return 0
+  printf '%s\t%s\n' "$1" "$2" >> "$GEARUP_RESULTS"
+}
+
+# gearup_summary — print a one-line tally plus the names of anything that failed.
+# Uses log/warn (never the "ok"/"!!" tool prefixes) so it can't trip the CI
+# "second run is a no-op" check.
+gearup_summary() {
+  [[ -n "${GEARUP_RESULTS:-}" && -s "${GEARUP_RESULTS:-/nonexistent}" ]] || return 0
+  local n_inst n_pres n_fail verb="installed"
+  read -r n_inst n_pres n_fail < <(awk -F'\t' '{c[$1]++} END{printf "%d %d %d\n", c["installed"], c["present"], c["failed"]}' "$GEARUP_RESULTS")
+  [[ "${DRY_RUN:-0}" == "1" ]] && verb="would install"
+  log "summary: $n_inst $verb, $n_pres already present, $n_fail failed"
+  if [[ "$n_fail" -gt 0 ]]; then
+    local failed
+    failed=$(awk -F'\t' '$1=="failed"{print $2}' "$GEARUP_RESULTS" | sort -u | tr '\n' ' ')
+    warn "failed: $failed"
+    log "re-run just those with: gearup  (or ./install.sh <step>) and pick them again"
+  fi
+}
+
+# ------------------------------------------------------------- tool filter ---
+# GEARUP_ONLY is an optional space-separated allow-list of tool names. When it
+# is empty/unset every tool installs (default; what the CLI and CI expect).
+# When set, only the named tools are touched — the TUI uses this to install a
+# user-picked subset. Keyed by command name (terraform, gh, dust, ...).
+gearup_selected() {
+  [[ -z "${GEARUP_ONLY:-}" ]] && return 0
+  local want=$1 t
+  for t in $GEARUP_ONLY; do
+    [[ "$t" == "$want" ]] && return 0
+  done
+  return 1
+}
+
+# _need <cmd> — true when <cmd> is selected AND missing (so we should install
+# it). Prints the "already done" skip line when it is already present. Shared by
+# the tool/cloud steps so each can run standalone.
+_need() {
+  gearup_selected "$1" || return 1
+  if has_cmd "$1"; then skip "$1"; record_result present "$1"; return 1; fi
+  return 0
+}
+
 # ------------------------------------------------------------ OS detection ---
 # Sets: GEARUP_OS (macos|linux), GEARUP_PKG (brew|apt|dnf|pacman)
 detect_platform() {
@@ -87,8 +136,10 @@ pkg_update_index() {
 ensure_pkg() {
   local cmd=$1 apt_name=$2
   local dnf_name=${3:-$apt_name} pacman_name=${4:-$apt_name} brew_name=${5:-$apt_name}
+  gearup_selected "$cmd" || return 0
   if has_cmd "$cmd"; then
     skip "$cmd"
+    record_result present "$cmd"
     return 0
   fi
   local name
@@ -100,6 +151,26 @@ ensure_pkg() {
   esac
   pkg_install "$name"
   ok "installed $cmd ($name)"
+  record_result installed "$cmd"
+}
+
+# ensure_brew <formula> [select-key]
+# macOS only. Installs a Homebrew formula unless already present. Idempotent via
+# `brew list --versions` (some formulae ship no command of their own — e.g. GNU
+# coreutils — so a has_cmd probe is not enough). select-key defaults to the
+# formula name and is what GEARUP_ONLY matches against.
+ensure_brew() {
+  local formula=$1 key=${2:-$1}
+  gearup_selected "$key" || return 0
+  [[ "$GEARUP_PKG" == "brew" ]] || { warn "ensure_brew $formula: not on brew, skipping"; return 0; }
+  if brew list --versions "$formula" >/dev/null 2>&1; then
+    skip "$formula"
+    record_result present "$key"
+    return 0
+  fi
+  run brew install "$formula"
+  ok "installed $formula (brew)"
+  record_result installed "$key"
 }
 
 # ---------------------------------------------------------------- symlinks ---

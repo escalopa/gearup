@@ -1,0 +1,80 @@
+# GoReleaser config for the gearup TUI.
+# Build a release locally:   make snapshot    (goreleaser release --snapshot --clean)
+# Validate this file:        make release-check
+# Cut a real release:        git tag vX.Y.Z && git push --tags   (CI does the rest)
+version: 2
+
+project_name: gearup
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: gearup
+    main: ./cmd/gearup
+    binary: gearup
+    env:
+      - CGO_ENABLED=0
+    goos: [linux, darwin]
+    goarch: [amd64, arm64]
+    ldflags:
+      - -s -w -X main.version={{ .Version }}
+
+archives:
+  - id: gearup
+    formats: [tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - README.md
+      - INSTALL.md
+      - CHEATSHEET.md
+      - LICENSE
+
+checksum:
+  name_template: "checksums.txt"
+
+# Linux system packages so users can `apt/dnf/pacman/apk` install the CLI.
+nfpms:
+  - id: packages
+    package_name: gearup
+    vendor: escalopa
+    homepage: https://github.com/escalopa/gearup
+    maintainer: escalopa <ahmed.helaly.dev@gmail.com>
+    description: Gear up a Linux or macOS box for Go backend work — a TUI over an idempotent installer.
+    license: MIT
+    formats: [deb, rpm, apk]
+    bindir: /usr/bin
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-dev"
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - "^ci:"
+      - "Merge pull request"
+
+release:
+  github:
+    owner: escalopa
+    name: gearup
+  draft: false
+  prerelease: auto
+  name_template: "gearup {{ .Tag }}"
+  footer: |
+    ## Install
+
+    See [INSTALL.md](https://github.com/escalopa/gearup/blob/main/INSTALL.md) for
+    every method. Quick prebuilt-binary grab:
+
+    ```sh
+    # pick your os_arch from the assets below
+    curl -fsSL https://github.com/escalopa/gearup/releases/download/{{ .Tag }}/gearup_{{ .Version }}_linux_amd64.tar.gz | tar -xz gearup
+    sudo mv gearup /usr/local/bin/
+    ```

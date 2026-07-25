@@ -16,6 +16,19 @@ jobs:
           shellcheck install.sh uninstall.sh bootstrap.sh lib/*.sh scripts/*.sh bin/ws
           shellcheck -s sh config/shell/gearup.sh
 
+  go-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: build, vet and format-check the TUI
+        run: |
+          go build ./...
+          go vet ./...
+          test -z "$(gofmt -l cmd internal)" || { echo "::error::gofmt needed"; gofmt -l cmd internal; exit 1; }
+
   demo-builds:
     runs-on: ubuntu-latest
     steps:
