@@ -248,6 +248,12 @@ var Tools = []Tool{
 	{Name: "jless", Command: "jless", Desc: "JSON/YAML pager", Step: "tools", Category: "API extras"},
 	{Name: "watchexec", Command: "watchexec", Desc: "run cmd on change", Step: "tools", Category: "API extras"},
 
+	// -- AI coding CLIs (35-ai.sh; opt-in) ------------------------------------
+	{Name: "claude", Command: "claude", Desc: "Claude Code (Anthropic)", Step: "ai", Category: "AI coding"},
+	{Name: "codex", Command: "codex", Desc: "Codex CLI (OpenAI)", Step: "ai", Category: "AI coding"},
+	{Name: "opencode", Command: "opencode", Desc: "opencode (open source)", Step: "ai", Category: "AI coding"},
+	{Name: "gemini", Command: "gemini", Desc: "Gemini CLI (Google)", Step: "ai", Category: "AI coding"},
+
 	// -- heavier cloud CLIs (70-cloud.sh) -------------------------------------
 	{Name: "terraform", Command: "terraform", Desc: "IaC", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "kubectl", Command: "kubectl", Desc: "Kubernetes CLI", Step: "cloud", Category: "Cloud / IaC"},

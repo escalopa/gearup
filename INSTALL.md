@@ -70,8 +70,23 @@ You do not have to install everything at once:
 gearup                           # or pick steps / individual tools in the TUI
 ```
 
-Steps, in run order: `packages · gnu · go · rust · tools · symlinks ·
-tmux-plugins · zsh · shell · cloud · tui`.
+Steps, in run order: `packages · gnu · go · rust · ai · tools · zsh ·
+symlinks · tmux-plugins · shell · cloud · tui`.
+
+### AI coding tools (opt-in)
+
+The `ai` step installs claude (Claude Code), codex, opencode, and gemini-cli via
+each provider's own channel (Homebrew on macOS, npm elsewhere). Because they come
+from npm/brew rather than the system package manager, a plain full install skips
+them. Install them any of these ways:
+
+```sh
+gearup                      # pick them in the TUI (AI coding category)
+./install.sh ai             # install all four
+GEARUP_AI=1 ./install.sh    # include them in a full install
+```
+
+The npm-distributed ones need Node.js; the step installs it if missing.
 
 ---
 

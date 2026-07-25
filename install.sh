@@ -28,6 +28,11 @@ for arg in "$@"; do
 done
 export DRY_RUN
 
+# Let steps tell "run everything" apart from "the user named specific steps".
+GEARUP_EXPLICIT_STEPS=0
+[[ ${#ONLY_STEPS[@]} -gt 0 ]] && GEARUP_EXPLICIT_STEPS=1
+export GEARUP_EXPLICIT_STEPS
+
 detect_platform
 log "platform: $GEARUP_OS ($GEARUP_PKG)  root: $GEARUP_ROOT"
 [[ "$DRY_RUN" == "1" ]] && log "DRY RUN — nothing will be changed"

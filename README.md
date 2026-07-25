@@ -43,11 +43,16 @@ removes the links and blocks.
 | Workflow | gh, glab, direnv, just, mkcert, act, gitleaks, shfmt, glow, gum |
 | Database | redis-cli, pgcli, usql, lazysql |
 | Security | trivy, hadolint, cosign, gitleaks |
+| AI coding | claude (Claude Code), codex (OpenAI), opencode, gemini-cli — **opt-in**, each via its own channel (brew / npm) |
 | GNU on macOS | coreutils, findutils, gnu-sed, gawk, gnu-tar, grep, gnu-getopt — so `sed`/`awk`/`find`/`date`/`tar` behave like on Linux |
 | Toolchains | Go (official tarball / brew) and Rust (rustup) — they also build everything above that ships via `go install` / `cargo install` |
 
 Everything is à la carte: the **`gearup` TUI** (below) lets you install whole
 categories or hand-pick individual tools, and shows what's already present.
+
+The **AI coding** CLIs are opt-in (they install from npm/brew, outside the system
+package manager). Pick them in the TUI, or run `./install.sh ai` /
+`GEARUP_AI=1 ./install.sh`; a plain full install skips them.
 
 …plus opinionated, portable configs, symlinked from this repo, so a
 `git pull` updates every machine you own:
@@ -95,8 +100,8 @@ underneath. Build it yourself anytime with `make install`.
 install.sh          entry point (idempotent; --dry-run supported)
 bootstrap.sh        curl-able one-command installer (clones + installs)
 lib/utils.sh        ensure_pkg / ensure_brew / ensure_symlink / gearup_selected
-scripts/NN-*.sh     steps in order: packages, gnu, go, rust, tools, symlinks,
-                    tmux plugins, zsh, shell, cloud, tui
+scripts/NN-*.sh     steps in order: packages, gnu, go, rust, ai, tools, zsh,
+                    symlinks, tmux plugins, shell, cloud, tui
 config/             every dotfile (incl. starship.toml), symlinked into $HOME
 cmd/gearup/         the TUI entry point (Go)
 internal/           TUI internals: catalog (steps+tools), runner, model
