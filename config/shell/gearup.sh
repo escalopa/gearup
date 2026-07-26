@@ -76,6 +76,9 @@ if [ -n "${ZSH_VERSION:-}" ] && [ -f "$HOME/.config/gearup/shell.zsh" ]; then
   . "$HOME/.config/gearup/shell.zsh"
 fi
 
+# ---- completions (kept in their own file; needs zsh compinit above) --------
+[ -f "$HOME/.config/gearup/completions.sh" ] && . "$HOME/.config/gearup/completions.sh"
+
 # ---- starship prompt (cross-shell; keep last so it wins the prompt) ---------
 if command -v starship >/dev/null 2>&1; then
   if [ -n "${ZSH_VERSION:-}" ]; then eval "$(starship init zsh)"; else eval "$(starship init bash)"; fi
