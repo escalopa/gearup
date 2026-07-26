@@ -156,13 +156,17 @@ make doctor      # run the report without installing
 
 ## Updating
 
-The quickest path — pull the repo and rebuild the binary in one command:
+The quickest path — fast-forward the clone to `origin/main` and rebuild the
+binary in one command:
 
 ```sh
 gearup update
 ```
 
-Because the configs are symlinked from the repo, that pull also refreshes them.
+`gearup update` always tracks **main**: it fetches, checks out, and builds from
+`origin/main` regardless of which branch the clone was on, so your install stays
+a single canonical copy of main. Because the configs are symlinked from the repo,
+this also refreshes them.
 To additionally (re)install any new/missing tools, run the installer — it's
 idempotent, so it only does what's needed:
 
