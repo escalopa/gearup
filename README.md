@@ -43,13 +43,13 @@ doctor`** any time for a live ✓/✗ report of what's present on *your* machine
 | Go toolchain | `tools` | gopls · golangci-lint · delve · air · goose · mockgen · goimports · gofumpt |
 | Backend / API | `tools` | grpcurl · grpcui · evans · buf · sqlc · protoc-gen-go · protoc-gen-go-grpc · migrate · hey |
 | Git & TUIs | `tools` | lazygit · lazydocker · lazysql · yq |
-| Devops | `tools` | k9s · terraform-docs · dive · cosign |
+| Devops | `tools` | k9s · terraform-docs · tflint · dive · cosign |
 | Workflow | `tools` | gh · glab · direnv · just · mkcert · act · gitleaks · shfmt · glow · gum |
 | Modern CLI | `tools` | eza · xh · dust · procs · sd · hyperfine · tokei · bottom · gitui |
 | Database | `tools` | redis-cli · pgcli · usql |
 | Security | `tools` | trivy · hadolint · age · age-keygen |
 | API extras | `tools` | websocat · tldr · jless · watchexec |
-| Cloud / IaC | `cloud` | terraform · kubectl · helm · tflint · aws · gcloud (Google Cloud) · yc (Yandex Cloud) |
+| Cloud / IaC | `cloud` | terraform · kubectl · helm · aws · gcloud (Google Cloud) · yc (Yandex Cloud) |
 | AI coding *(opt-in)* | `ai` | claude · codex · opencode · gemini · graphify |
 
 Everything is à la carte: the **`gearup` TUI** (below) lets you install a whole
@@ -77,10 +77,12 @@ the TUI, run `./install.sh ai`, or set `GEARUP_AI=1 ./install.sh`.
   trouble.nvim diagnostics, nvim-surround, treesitter, gitsigns, and
   which-key so the keymap teaches itself.
 - **Shell block** for bash *and* zsh: PATH wiring, GNU userland on macOS,
-  zoxide, fzf keybindings, zsh plugins, starship, the `ws` switcher, and a
-  dedicated **[aliases file](config/shell/aliases.sh)** (git `g`/`ga`/`gcm`,
-  terraform `tf`/`tfp`/`tfa`, kubectl `k`/`kgp`, docker, go, … — each guarded so
-  it only exists when the tool does). Edit that one file to tweak them.
+  zoxide, fzf keybindings, zsh plugins, starship, the `ws` switcher, a dedicated
+  **[aliases file](config/shell/aliases.sh)** (git `g`/`ga`/`gcm`, terraform
+  `tf`/`tfp`/`tfa`, kubectl `k`/`kgp`, docker, go, … — each guarded so it only
+  exists when the tool does), and a **[completions file](config/shell/completions.sh)**
+  that wires up shell autocompletion for kubectl, helm, gh, glab, terraform,
+  gcloud, yc, just, and more. Edit those two files to tweak them.
 
 ## The `gearup` TUI
 
@@ -91,6 +93,7 @@ it drives them, so the idempotency guarantees still hold.
 ```sh
 gearup            # interactive: pick steps or individual tools, watch them install
 gearup doctor     # non-interactive: report which tools are installed / missing
+gearup update     # git pull the repo and rebuild the binary in place
 gearup --version  # print the version
 ```
 

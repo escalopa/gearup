@@ -95,6 +95,7 @@ else
   # ---- devops / cloud (Go-installable; heavier CLIs live in 70-cloud.sh) -----
   _go_install k9s          github.com/derailed/k9s@latest
   _go_install terraform-docs github.com/terraform-docs/terraform-docs@latest
+  _go_install tflint       github.com/terraform-linters/tflint@latest             # Terraform linter
   _go_install dive         github.com/wagoodman/dive@latest
   _go_install cosign       github.com/sigstore/cosign/v2/cmd/cosign@latest
   _go_install age          filippo.io/age/cmd/age@latest           # modern file encryption
