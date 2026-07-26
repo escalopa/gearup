@@ -40,6 +40,10 @@ export GEARUP_EXPLICIT_STEPS
 # find go and would reinstall it).
 export PATH="$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
 
+# Realign a stale GOROOT up front so go installs work in ANY step (e.g. a TUI
+# run of just `tools`), not only when the `go` step runs.
+gearup_fix_goroot
+
 detect_platform
 log "platform: $GEARUP_OS ($GEARUP_PKG)  root: $GEARUP_ROOT"
 [[ "$DRY_RUN" == "1" ]] && log "DRY RUN — nothing will be changed"

@@ -39,16 +39,7 @@ fi
 export GOBIN="${GOBIN:-$HOME/go/bin}"
 export PATH="$GOBIN:$PATH"
 
-# A stale exported GOROOT (e.g. from a company toolchain like Yandex `ya`) that
-# points at a *different* Go version than the `go` on PATH makes every
-# `go install`/`go build` fail with "compile version does not match go tool
-# version". Align GOROOT to the active go for the rest of this install run only
-# — this is a subprocess, so your interactive shell and other toolchains are
-# left untouched.
-if has_cmd go; then
-  _real_goroot="$(env -u GOROOT go env GOROOT 2>/dev/null || true)"
-  if [[ -n "${GOROOT:-}" && -n "$_real_goroot" && "$GOROOT" != "$_real_goroot" ]]; then
-    log "GOROOT ($GOROOT) doesn't match go on PATH — using $_real_goroot for this run"
-    export GOROOT="$_real_goroot"
-  fi
-fi
+# If Go was just installed above, realign a stale GOROOT now (install.sh also
+# calls this up front, but Go may not have been on PATH back then). Defined in
+# lib/utils.sh so every step benefits.
+gearup_fix_goroot
