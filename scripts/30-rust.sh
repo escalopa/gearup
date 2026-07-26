@@ -13,3 +13,18 @@ fi
 
 # Visible for the rest of this run; new shells get it from the shell block.
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Rust dev components used by the Neovim config: rust-analyzer (LSP), clippy
+# (lints via checkOnSave), rustfmt (format on save). Idempotent — only added
+# when missing so a re-run stays a no-op.
+if has_cmd rustup; then
+  for comp in rust-analyzer clippy rustfmt; do
+    if rustup component list --installed 2>/dev/null | grep -q "^$comp"; then
+      skip "rust component $comp"
+    elif run rustup component add "$comp"; then
+      ok "installed rust component $comp"
+    else
+      warn "rust component $comp: add failed"
+    fi
+  done
+fi

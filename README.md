@@ -72,10 +72,15 @@ the TUI, run `./install.sh ai`, or set `GEARUP_AI=1 ./install.sh`.
   tmux-sensible, vim-tmux-navigator, tmux-yank, and
   tmux-resurrect/continuum so sessions survive reboots.
 - **Neovim (Lua)** built for huge codebases: fzf-lua (streamed
-  ripgrep — no indexing), gopls tuned with `directoryFilters` and a
-  completion budget, harpoon file pins, oil.nvim, flash.nvim jumps,
+  ripgrep — no indexing), **Go** (gopls tuned with `directoryFilters` +
+  completion budget, format/organize-imports on save) and **Rust**
+  (rust-analyzer with clippy-on-save, crates.nvim for `Cargo.toml`,
+  rustfmt on save), harpoon file pins, oil.nvim, flash.nvim jumps,
   trouble.nvim diagnostics, nvim-surround, treesitter, gitsigns, and
-  which-key so the keymap teaches itself.
+  which-key so the keymap teaches itself. **tmux integration** via
+  vim-tmux-navigator (unified `Ctrl-h/j/k/l` movement) and vimux —
+  `Space-t-t/-b/-r` run tests/build/run in a tmux pane, picking `go`/`cargo`
+  by filetype.
 - **Shell block** for bash *and* zsh: PATH wiring, GNU userland on macOS,
   zoxide, fzf keybindings, zsh plugins, starship, the `ws` switcher, a dedicated
   **[aliases file](config/shell/aliases.sh)** (git `g`/`ga`/`gcm`, terraform
