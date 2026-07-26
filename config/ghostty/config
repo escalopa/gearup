@@ -1,0 +1,95 @@
+# gearup Ghostty config — https://ghostty.org
+# Symlinked to ~/.config/ghostty/config. Reload in-app with super+shift+, or
+# restart Ghostty. Invalid lines are logged and skipped, not fatal.
+# NOTE: Ghostty does not support trailing comments; keep comments on their own line.
+
+# ============================================================ colors =========
+# One Dark Pro (Atom One Dark palette) to match the VS Code theme.
+background = #282c34
+foreground = #abb2bf
+cursor-color = #528bff
+cursor-text = #282c34
+selection-background = #3e4451
+selection-foreground = #abb2bf
+
+# ANSI 0-15
+palette = 0=#282c34
+palette = 1=#e06c75
+palette = 2=#98c379
+palette = 3=#e5c07b
+palette = 4=#61afef
+palette = 5=#c678dd
+palette = 6=#56b6c2
+palette = 7=#abb2bf
+palette = 8=#5c6370
+palette = 9=#e06c75
+palette = 10=#98c379
+palette = 11=#e5c07b
+palette = 12=#61afef
+palette = 13=#c678dd
+palette = 14=#56b6c2
+palette = 15=#ffffff
+
+# ============================================================ window =========
+font-size = 14
+# Uncomment to override the bundled font:
+# font-family = JetBrains Mono
+
+window-padding-x = 10
+window-padding-y = 8
+window-padding-balance = true
+
+# subtle translucency + blur
+background-opacity = 0.96
+background-blur = 20
+# richer colors on macOS displays
+window-colorspace = display-p3
+
+# native tabs in the titlebar
+macos-titlebar-style = tabs
+# let Alt-based keybinds work on macOS
+macos-option-as-alt = true
+
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+copy-on-select = true
+# ~100 MB of scrollback
+scrollback-limit = 100000000
+shell-integration-features = cursor,sudo,title
+# restore windows/splits on relaunch
+window-save-state = always
+
+# ============================================================ keybinds =======
+# Ghostty ships good macOS defaults (super+t new tab, super+w close,
+# super+1..9 goto tab, super+c/v copy/paste); these add the common extras.
+# `super` = Cmd on macOS.
+
+# splits
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+keybind = super+shift+enter=toggle_split_zoom
+
+# move focus between splits
+keybind = super+alt+left=goto_split:left
+keybind = super+alt+right=goto_split:right
+keybind = super+alt+up=goto_split:up
+keybind = super+alt+down=goto_split:down
+
+# resize splits
+keybind = super+ctrl+left=resize_split:left,20
+keybind = super+ctrl+right=resize_split:right,20
+keybind = super+ctrl+up=resize_split:up,20
+keybind = super+ctrl+down=resize_split:down,20
+
+# font size
+keybind = super+equal=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+zero=reset_font_size
+
+# misc
+keybind = super+k=clear_screen
+keybind = super+shift+r=reload_config
+
+# drop-down "quick terminal" (needs Accessibility permission for the global bind)
+keybind = global:super+grave_accent=toggle_quick_terminal
