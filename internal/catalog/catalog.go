@@ -245,6 +245,18 @@ var Tools = []Tool{
 	{Name: "age", Command: "age", Desc: "modern file encryption", Step: "tools", Category: "Security"},
 	{Name: "age-keygen", Command: "age-keygen", Desc: "age key generation", Step: "tools", Category: "Security"},
 
+	// -- sysadmin / networking / logs -----------------------------------------
+	{Name: "duf", Command: "duf", Desc: "disk usage/free", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "ncdu", Command: "ncdu", Desc: "disk usage TUI", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "gping", Command: "gping", Desc: "ping with a graph", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "mtr", Command: "mtr", Desc: "traceroute + ping", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "nmap", Command: "nmap", Desc: "network/port scanner", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "doggo", Command: "doggo", Desc: "modern DNS client", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "curlie", Command: "curlie", Desc: "curl + httpie", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "gron", Command: "gron", Desc: "greppable JSON", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "stern", Command: "stern", Desc: "multi-pod k8s logs", Step: "tools", Category: "Sysadmin / net"},
+	{Name: "lnav", Command: "lnav", Desc: "log file navigator", Step: "tools", Category: "Sysadmin / net"},
+
 	// -- API / proto extras ---------------------------------------------------
 	{Name: "websocat", Command: "websocat", Desc: "WebSocket cURL", Step: "tools", Category: "API extras"},
 	{Name: "tldr", Command: "tldr", Desc: "fast man pages", Step: "tools", Category: "API extras"},
