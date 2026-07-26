@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="812" height="1261" viewBox="0 0 812 1261" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13">
-<rect x="0" y="0" width="812" height="1261" rx="10" fill="#0d1117" stroke="#30363d"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="812" height="1280" viewBox="0 0 812 1280" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13">
+<rect x="0" y="0" width="812" height="1280" rx="10" fill="#0d1117" stroke="#30363d"/>
 <circle cx="20" cy="20" r="6" fill="#ff5f56"/><circle cx="40" cy="20" r="6" fill="#ffbd2e"/><circle cx="60" cy="20" r="6" fill="#27c93f"/>
 <text x="406.0" y="24" fill="#8b949e" text-anchor="middle">$ gearup doctor</text>
 <line x1="0" y1="40" x2="812" y2="40" stroke="#30363d"/>
@@ -52,13 +52,14 @@
 <text x="22" y="999.5" fill="#58a6ff" font-weight="700">Git &amp; TUIs</text>
 <text x="22" y="1018.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  lazydocker</tspan><tspan fill="#768390" xml:space="preserve">  docker TUI</tspan></text>
 <text x="22" y="1036.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  lazygit</tspan><tspan fill="#768390" xml:space="preserve">  git TUI</tspan></text>
-<text x="22" y="1055.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  lazysql</tspan><tspan fill="#768390" xml:space="preserve">  SQL TUI</tspan></text>
+<text x="22" y="1055.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  lazysql</tspan><tspan fill="#768390" xml:space="preserve">  SQL TUI</tspan></text>
 <text x="22" y="1073.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  yq</tspan><tspan fill="#768390" xml:space="preserve">  YAML jq</tspan></text>
 <text x="22" y="1110.5" fill="#58a6ff" font-weight="700">Devops</text>
 <text x="22" y="1129.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  cosign</tspan><tspan fill="#768390" xml:space="preserve">  sign/verify artifacts</tspan></text>
 <text x="22" y="1147.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  dive</tspan><tspan fill="#768390" xml:space="preserve">  docker image explorer</tspan></text>
 <text x="22" y="1166.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  k9s</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes TUI</tspan></text>
 <text x="22" y="1184.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  terraform-docs</tspan><tspan fill="#768390" xml:space="preserve">  TF module docs</tspan></text>
+<text x="22" y="1203.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  tflint</tspan><tspan fill="#768390" xml:space="preserve">  Terraform linter</tspan></text>
 <text x="418" y="56.0" fill="#58a6ff" font-weight="700">Workflow</text>
 <text x="418" y="74.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  act</tspan><tspan fill="#768390" xml:space="preserve">  run GH Actions locally</tspan></text>
 <text x="418" y="93.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  direnv</tspan><tspan fill="#768390" xml:space="preserve">  per-project env</tspan></text>
@@ -97,16 +98,15 @@
 <text x="418" y="796.0" fill="#58a6ff" font-weight="700">AI coding</text>
 <text x="418" y="814.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  claude</tspan><tspan fill="#768390" xml:space="preserve">  Claude Code (Anthropic)</tspan></text>
 <text x="418" y="833.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  codex</tspan><tspan fill="#768390" xml:space="preserve">  Codex CLI (OpenAI)</tspan></text>
-<text x="418" y="851.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  gemini</tspan><tspan fill="#768390" xml:space="preserve">  Gemini CLI (Google)</tspan></text>
+<text x="418" y="851.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gemini</tspan><tspan fill="#768390" xml:space="preserve">  Gemini CLI (Google)</tspan></text>
 <text x="418" y="870.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  graphify</tspan><tspan fill="#768390" xml:space="preserve">  codebase knowledge graphs</tspan></text>
 <text x="418" y="888.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  opencode</tspan><tspan fill="#768390" xml:space="preserve">  opencode (open source)</tspan></text>
 <text x="418" y="925.5" fill="#58a6ff" font-weight="700">Cloud / IaC</text>
 <text x="418" y="944.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  aws</tspan><tspan fill="#768390" xml:space="preserve">  AWS CLI v2</tspan></text>
-<text x="418" y="962.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  gcloud</tspan><tspan fill="#768390" xml:space="preserve">  Google Cloud CLI</tspan></text>
+<text x="418" y="962.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gcloud</tspan><tspan fill="#768390" xml:space="preserve">  Google Cloud CLI</tspan></text>
 <text x="418" y="981.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  helm</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes packages</tspan></text>
 <text x="418" y="999.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  kubectl</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes CLI</tspan></text>
 <text x="418" y="1018.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  terraform</tspan><tspan fill="#768390" xml:space="preserve">  IaC</tspan></text>
-<text x="418" y="1036.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  tflint</tspan><tspan fill="#768390" xml:space="preserve">  Terraform linter</tspan></text>
-<text x="418" y="1055.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  yc</tspan><tspan fill="#768390" xml:space="preserve">  Yandex Cloud CLI</tspan></text>
-<text x="22" y="1245" fill="#8b949e"><tspan fill="#d29922">•</tspan> 4 tool(s) missing. Run `gearup` to install.</text>
+<text x="418" y="1036.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  yc</tspan><tspan fill="#768390" xml:space="preserve">  Yandex Cloud CLI</tspan></text>
+<text x="22" y="1264" fill="#8b949e"><tspan fill="#d29922">•</tspan> all cataloged tools present.</text>
 </svg>

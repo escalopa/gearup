@@ -43,13 +43,13 @@ doctor`** any time for a live ✓/✗ report of what's present on *your* machine
 | Go toolchain | `tools` | gopls · golangci-lint · delve · air · goose · mockgen · goimports · gofumpt |
 | Backend / API | `tools` | grpcurl · grpcui · evans · buf · sqlc · protoc-gen-go · protoc-gen-go-grpc · migrate · hey |
 | Git & TUIs | `tools` | lazygit · lazydocker · lazysql · yq |
-| Devops | `tools` | k9s · terraform-docs · dive · cosign |
+| Devops | `tools` | k9s · terraform-docs · tflint · dive · cosign |
 | Workflow | `tools` | gh · glab · direnv · just · mkcert · act · gitleaks · shfmt · glow · gum |
 | Modern CLI | `tools` | eza · xh · dust · procs · sd · hyperfine · tokei · bottom · gitui |
 | Database | `tools` | redis-cli · pgcli · usql |
 | Security | `tools` | trivy · hadolint · age · age-keygen |
 | API extras | `tools` | websocat · tldr · jless · watchexec |
-| Cloud / IaC | `cloud` | terraform · kubectl · helm · tflint · aws · gcloud (Google Cloud) · yc (Yandex Cloud) |
+| Cloud / IaC | `cloud` | terraform · kubectl · helm · aws · gcloud (Google Cloud) · yc (Yandex Cloud) |
 | AI coding *(opt-in)* | `ai` | claude · codex · opencode · gemini · graphify |
 
 Everything is à la carte: the **`gearup` TUI** (below) lets you install a whole

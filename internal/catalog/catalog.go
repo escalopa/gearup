@@ -207,6 +207,7 @@ var Tools = []Tool{
 	// -- devops (Go-installable; 40-tools.sh) ---------------------------------
 	{Name: "k9s", Command: "k9s", Desc: "Kubernetes TUI", Step: "tools", Category: "Devops"},
 	{Name: "terraform-docs", Command: "terraform-docs", Desc: "TF module docs", Step: "tools", Category: "Devops"},
+	{Name: "tflint", Command: "tflint", Desc: "Terraform linter", Step: "tools", Category: "Devops"},
 	{Name: "dive", Command: "dive", Desc: "docker image explorer", Step: "tools", Category: "Devops"},
 	{Name: "cosign", Command: "cosign", Desc: "sign/verify artifacts", Step: "tools", Category: "Devops"},
 
@@ -261,7 +262,6 @@ var Tools = []Tool{
 	{Name: "terraform", Command: "terraform", Desc: "IaC", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "kubectl", Command: "kubectl", Desc: "Kubernetes CLI", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "helm", Command: "helm", Desc: "Kubernetes packages", Step: "cloud", Category: "Cloud / IaC"},
-	{Name: "tflint", Command: "tflint", Desc: "Terraform linter", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "aws", Command: "aws", Desc: "AWS CLI v2", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "yc", Command: "yc", Desc: "Yandex Cloud CLI", Step: "cloud", Category: "Cloud / IaC"},
 	{Name: "gcloud", Command: "gcloud", Desc: "Google Cloud CLI", Step: "cloud", Category: "Cloud / IaC"},

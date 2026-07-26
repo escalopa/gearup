@@ -51,16 +51,6 @@ install_helm() {
 }
 
 # ---- tflint -----------------------------------------------------------------
-install_tflint() {
-  if [[ "$GEARUP_OS" == "macos" ]]; then
-    run brew install tflint
-  elif has_cmd go; then
-    run go install github.com/terraform-linters/tflint@latest || return 1
-  else
-    return 1
-  fi
-}
-
 # ---- aws cli v2 -------------------------------------------------------------
 install_awscli() {
   if [[ "$GEARUP_OS" == "macos" ]]; then
@@ -104,7 +94,6 @@ CLOUD_TOOLS=(
   "terraform=install_terraform"
   "kubectl=install_kubectl"
   "helm=install_helm"
-  "tflint=install_tflint"
   "aws=install_awscli"
   "yc=install_yc"
   "gcloud=install_gcloud"
