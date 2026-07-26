@@ -98,7 +98,7 @@ it drives them, so the idempotency guarantees still hold.
 ```sh
 gearup            # interactive: pick steps or individual tools, watch them install
 gearup doctor     # non-interactive: report which tools are installed / missing
-gearup update     # git pull the repo and rebuild the binary in place
+gearup update     # fast-forward the repo to origin/main and rebuild the binary
 gearup --version  # print the version
 ```
 

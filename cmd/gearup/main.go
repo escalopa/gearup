@@ -65,7 +65,7 @@ func usage() {
 Usage:
   gearup            launch the interactive installer TUI
   gearup doctor     report which tools are installed / missing
-  gearup update     git pull the repo and rebuild the binary
+  gearup update     fast-forward the repo to origin/main and rebuild the binary
   gearup --version  print version
 
 Inside the TUI: space selects a step, enter drills into its tools, r runs the
@@ -73,20 +73,33 @@ selection, d toggles dry-run, D opens the doctor view, q quits.
 `)
 }
 
-// update pulls the latest repo and rebuilds the gearup binary in place. Configs
-// are symlinked from the repo, so the pull refreshes them too; run `gearup` or
-// `./install.sh` afterwards to pick up any new tools.
+// updateBranch is the single branch gearup tracks: updates always fetch, check
+// out, and build from main — never whatever branch the clone happens to be on.
+const updateBranch = "main"
+
+// update fast-forwards the repo to origin/main and rebuilds the gearup binary in
+// place from main. Configs are symlinked from the repo, so the update refreshes
+// them too; run `gearup` or `./install.sh` afterwards to pick up any new tools.
 func update() int {
 	root := catalog.FindRoot()
 	if root == "" {
 		fmt.Fprintln(os.Stderr, "gearup: could not locate the repo (set GEARUP_ROOT, or clone to ~/.gearup).")
 		return 1
 	}
-	fmt.Println("updating gearup in", root)
+	fmt.Printf("updating gearup in %s (branch %s)\n", root, updateBranch)
 
-	if err := runAt(root, os.Environ(), "git", "pull", "--ff-only"); err != nil {
-		fmt.Fprintln(os.Stderr, "gearup: git pull failed:", err)
-		return 1
+	// Always track main: fetch it, switch to it, and fast-forward — so the local
+	// clone stays a single canonical copy of main regardless of prior state.
+	env := os.Environ()
+	for _, args := range [][]string{
+		{"fetch", "origin", updateBranch},
+		{"checkout", updateBranch},
+		{"merge", "--ff-only", "origin/" + updateBranch},
+	} {
+		if err := runAt(root, env, "git", args...); err != nil {
+			fmt.Fprintf(os.Stderr, "gearup: `git %s` failed: %v\n", strings.Join(args, " "), err)
+			return 1
+		}
 	}
 
 	self, err := os.Executable()
