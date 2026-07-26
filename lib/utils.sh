@@ -28,6 +28,22 @@ run() {
 
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
 
+# A stale exported GOROOT (e.g. from a company toolchain like Yandex `ya`) that
+# points at a different Go version than the `go` on PATH makes every
+# `go install`/`go build` fail with "compile version does not match go tool
+# version". Align GOROOT to the active go for the rest of THIS install run only —
+# this is a subprocess, so the interactive shell and other toolchains are
+# untouched. Called from install.sh so it applies to EVERY step (not just `go`).
+gearup_fix_goroot() {
+  has_cmd go || return 0
+  local real
+  real="$(env -u GOROOT go env GOROOT 2>/dev/null || true)"
+  if [[ -n "${GOROOT:-}" && -n "$real" && "$GOROOT" != "$real" ]]; then
+    log "GOROOT ($GOROOT) doesn't match go on PATH — using $real for this run"
+    export GOROOT="$real"
+  fi
+}
+
 # ------------------------------------------------------- install results ----
 # When GEARUP_RESULTS names a file, the tool installers append one tab-separated
 # line per tool: "<status>\t<name>" with status = installed | present | failed.
