@@ -10,7 +10,10 @@ package main
 import (
 	"fmt"
 	"os"
+	"os/exec"
+	"path/filepath"
 	"sort"
+	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
 
@@ -33,6 +36,8 @@ func main() {
 			return
 		case "doctor":
 			os.Exit(doctor())
+		case "update", "upgrade":
+			os.Exit(update())
 		default:
 			fmt.Fprintf(os.Stderr, "gearup: unknown command %q\n\n", args[0])
 			usage()
@@ -60,11 +65,76 @@ func usage() {
 Usage:
   gearup            launch the interactive installer TUI
   gearup doctor     report which tools are installed / missing
+  gearup update     git pull the repo and rebuild the binary
   gearup --version  print version
 
 Inside the TUI: space selects a step, enter drills into its tools, r runs the
 selection, d toggles dry-run, D opens the doctor view, q quits.
 `)
+}
+
+// update pulls the latest repo and rebuilds the gearup binary in place. Configs
+// are symlinked from the repo, so the pull refreshes them too; run `gearup` or
+// `./install.sh` afterwards to pick up any new tools.
+func update() int {
+	root := catalog.FindRoot()
+	if root == "" {
+		fmt.Fprintln(os.Stderr, "gearup: could not locate the repo (set GEARUP_ROOT, or clone to ~/.gearup).")
+		return 1
+	}
+	fmt.Println("updating gearup in", root)
+
+	if err := runAt(root, os.Environ(), "git", "pull", "--ff-only"); err != nil {
+		fmt.Fprintln(os.Stderr, "gearup: git pull failed:", err)
+		return 1
+	}
+
+	self, err := os.Executable()
+	if err != nil || self == "" {
+		home, _ := os.UserHomeDir()
+		self = filepath.Join(home, ".local", "bin", "gearup")
+	}
+	ver := gitDescribe(root)
+
+	// Build with a GOROOT-free env so a stale exported GOROOT (e.g. a company
+	// toolchain) can't break the build with a "compile version" mismatch.
+	if err := runAt(root, envWithout("GOROOT"), "go", "build", "-buildvcs=false",
+		"-ldflags", "-s -w -X main.version="+ver, "-o", self, "./cmd/gearup"); err != nil {
+		fmt.Fprintln(os.Stderr, "gearup: rebuild failed (is Go installed and on PATH?):", err)
+		return 1
+	}
+
+	fmt.Printf("gearup updated to %s → %s\n", ver, self)
+	fmt.Println("run `gearup` to install any new tools, or `./install.sh` to refresh everything.")
+	return 0
+}
+
+func runAt(dir string, env []string, name string, args ...string) error {
+	c := exec.Command(name, args...)
+	c.Dir = dir
+	c.Env = env
+	c.Stdout, c.Stderr, c.Stdin = os.Stdout, os.Stderr, os.Stdin
+	return c.Run()
+}
+
+func gitDescribe(dir string) string {
+	out, err := exec.Command("git", "-C", dir, "describe", "--tags", "--always", "--dirty").Output()
+	if err != nil {
+		return "dev"
+	}
+	return strings.TrimSpace(string(out))
+}
+
+func envWithout(key string) []string {
+	prefix := key + "="
+	var out []string
+	for _, kv := range os.Environ() {
+		if strings.HasPrefix(kv, prefix) {
+			continue
+		}
+		out = append(out, kv)
+	}
+	return out
 }
 
 // doctor prints a non-interactive installed/missing report grouped by category.

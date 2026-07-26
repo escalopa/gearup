@@ -77,10 +77,12 @@ the TUI, run `./install.sh ai`, or set `GEARUP_AI=1 ./install.sh`.
   trouble.nvim diagnostics, nvim-surround, treesitter, gitsigns, and
   which-key so the keymap teaches itself.
 - **Shell block** for bash *and* zsh: PATH wiring, GNU userland on macOS,
-  zoxide, fzf keybindings, zsh plugins, starship, the `ws` switcher, and a
-  dedicated **[aliases file](config/shell/aliases.sh)** (git `g`/`ga`/`gcm`,
-  terraform `tf`/`tfp`/`tfa`, kubectl `k`/`kgp`, docker, go, … — each guarded so
-  it only exists when the tool does). Edit that one file to tweak them.
+  zoxide, fzf keybindings, zsh plugins, starship, the `ws` switcher, a dedicated
+  **[aliases file](config/shell/aliases.sh)** (git `g`/`ga`/`gcm`, terraform
+  `tf`/`tfp`/`tfa`, kubectl `k`/`kgp`, docker, go, … — each guarded so it only
+  exists when the tool does), and a **[completions file](config/shell/completions.sh)**
+  that wires up shell autocompletion for kubectl, helm, gh, glab, terraform,
+  gcloud, yc, just, and more. Edit those two files to tweak them.
 
 ## The `gearup` TUI
 
@@ -91,6 +93,7 @@ it drives them, so the idempotency guarantees still hold.
 ```sh
 gearup            # interactive: pick steps or individual tools, watch them install
 gearup doctor     # non-interactive: report which tools are installed / missing
+gearup update     # git pull the repo and rebuild the binary in place
 gearup --version  # print the version
 ```
 

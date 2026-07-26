@@ -156,10 +156,19 @@ make doctor      # run the report without installing
 
 ## Updating
 
+The quickest path — pull the repo and rebuild the binary in one command:
+
 ```sh
-cd ~/.gearup && git pull        # update the repo (configs are symlinked, so this
-                                # updates every machine you own)
-./install.sh                    # re-run: idempotent, only does what's needed
+gearup update
+```
+
+Because the configs are symlinked from the repo, that pull also refreshes them.
+To additionally (re)install any new/missing tools, run the installer — it's
+idempotent, so it only does what's needed:
+
+```sh
+cd ~/.gearup && git pull        # (gearup update already did this)
+./install.sh                    # re-run: installs only what's missing
 ```
 
 The bootstrap one-liner also updates in place if `~/.gearup` already exists.
