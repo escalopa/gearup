@@ -101,6 +101,13 @@ else
   _go_install age          filippo.io/age/cmd/age@latest           # modern file encryption
   _go_install age-keygen   filippo.io/age/cmd/age-keygen@latest    # age key generation
 
+  # ---- sysadmin / networking / logs -----------------------------------------
+  _go_install duf          github.com/muesli/duf@latest            # disk usage/free, nicer df
+  _go_install doggo        github.com/mr-karan/doggo/cmd/doggo@latest # modern DNS client
+  _go_install gron         github.com/tomnomnom/gron@latest        # greppable JSON
+  _go_install stern        github.com/stern/stern@latest           # multi-pod Kubernetes log tail
+  _go_install curlie       github.com/rs/curlie@latest             # curl + httpie ergonomics
+
   # ---- VCS / CI / workflow --------------------------------------------------
   _go_install glab         gitlab.com/gitlab-org/cli/cmd/glab@latest
   _go_install act          github.com/nektos/act@latest
@@ -146,3 +153,10 @@ _pkg_or_cargo websocat  websocat  websocat        # WebSocket cURL
 _pkg_or_cargo tldr      tealdeer  tealdeer         # fast, community man pages
 _pkg_or_cargo jless     jless     jless            # JSON/YAML pager
 _pkg_or_cargo watchexec watchexec watchexec-cli    # run a command on file change
+
+# ================================== Sysadmin / networking (packages) ========
+ensure_pkg ncdu  ncdu                              # interactive disk usage TUI
+ensure_pkg nmap  nmap                              # network/port scanner
+ensure_pkg mtr   mtr-tiny mtr mtr mtr              # traceroute + ping (apt: mtr-tiny)
+_pkg_soft  lnav  lnav                              # log file navigator
+_pkg_or_cargo gping gping gping                    # ping, with a live graph

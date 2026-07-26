@@ -49,6 +49,7 @@ doctor`** any time for a live ✓/✗ report of what's present on *your* machine
 | Database | `tools` | redis-cli · pgcli · usql |
 | Security | `tools` | trivy · hadolint · age · age-keygen |
 | API extras | `tools` | websocat · tldr · jless · watchexec |
+| Sysadmin / net | `tools` | duf · ncdu · gping · mtr · nmap · doggo · curlie · gron · stern · lnav |
 | Cloud / IaC | `cloud` | terraform · kubectl · helm · aws · gcloud (Google Cloud) · yc (Yandex Cloud) |
 | AI coding *(opt-in)* | `ai` | claude · codex · opencode · gemini · graphify |
 

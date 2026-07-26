@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="812" height="1280" viewBox="0 0 812 1280" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13">
-<rect x="0" y="0" width="812" height="1280" rx="10" fill="#0d1117" stroke="#30363d"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="812" height="1502" viewBox="0 0 812 1502" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13">
+<rect x="0" y="0" width="812" height="1502" rx="10" fill="#0d1117" stroke="#30363d"/>
 <circle cx="20" cy="20" r="6" fill="#ff5f56"/><circle cx="40" cy="20" r="6" fill="#ffbd2e"/><circle cx="60" cy="20" r="6" fill="#27c93f"/>
 <text x="406.0" y="24" fill="#8b949e" text-anchor="middle">$ gearup doctor</text>
 <line x1="0" y1="40" x2="812" y2="40" stroke="#30363d"/>
@@ -60,36 +60,47 @@
 <text x="22" y="1166.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  k9s</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes TUI</tspan></text>
 <text x="22" y="1184.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  terraform-docs</tspan><tspan fill="#768390" xml:space="preserve">  TF module docs</tspan></text>
 <text x="22" y="1203.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  tflint</tspan><tspan fill="#768390" xml:space="preserve">  Terraform linter</tspan></text>
-<text x="418" y="56.0" fill="#58a6ff" font-weight="700">Workflow</text>
-<text x="418" y="74.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  act</tspan><tspan fill="#768390" xml:space="preserve">  run GH Actions locally</tspan></text>
-<text x="418" y="93.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  direnv</tspan><tspan fill="#768390" xml:space="preserve">  per-project env</tspan></text>
-<text x="418" y="111.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gh</tspan><tspan fill="#768390" xml:space="preserve">  GitHub CLI</tspan></text>
-<text x="418" y="130.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gitleaks</tspan><tspan fill="#768390" xml:space="preserve">  secret scanner</tspan></text>
-<text x="418" y="148.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  glab</tspan><tspan fill="#768390" xml:space="preserve">  GitLab CLI</tspan></text>
-<text x="418" y="167.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  glow</tspan><tspan fill="#768390" xml:space="preserve">  markdown reader</tspan></text>
-<text x="418" y="185.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gum</tspan><tspan fill="#768390" xml:space="preserve">  shell TUI toolkit</tspan></text>
-<text x="418" y="204.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  just</tspan><tspan fill="#768390" xml:space="preserve">  command runner</tspan></text>
-<text x="418" y="222.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  mkcert</tspan><tspan fill="#768390" xml:space="preserve">  local TLS certs</tspan></text>
-<text x="418" y="241.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  shfmt</tspan><tspan fill="#768390" xml:space="preserve">  shell formatter</tspan></text>
-<text x="418" y="278.0" fill="#58a6ff" font-weight="700">Modern CLI</text>
-<text x="418" y="296.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  bottom</tspan><tspan fill="#768390" xml:space="preserve">  system monitor</tspan></text>
-<text x="418" y="315.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  dust</tspan><tspan fill="#768390" xml:space="preserve">  nicer du</tspan></text>
-<text x="418" y="333.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  eza</tspan><tspan fill="#768390" xml:space="preserve">  modern ls</tspan></text>
-<text x="418" y="352.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gitui</tspan><tspan fill="#768390" xml:space="preserve">  git TUI (rust)</tspan></text>
-<text x="418" y="370.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  hyperfine</tspan><tspan fill="#768390" xml:space="preserve">  benchmarking</tspan></text>
-<text x="418" y="389.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  procs</tspan><tspan fill="#768390" xml:space="preserve">  nicer ps</tspan></text>
-<text x="418" y="407.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  sd</tspan><tspan fill="#768390" xml:space="preserve">  nicer sed</tspan></text>
-<text x="418" y="426.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  tokei</tspan><tspan fill="#768390" xml:space="preserve">  count code</tspan></text>
-<text x="418" y="444.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  xh</tspan><tspan fill="#768390" xml:space="preserve">  friendly HTTP client</tspan></text>
-<text x="418" y="481.5" fill="#58a6ff" font-weight="700">Database</text>
-<text x="418" y="500.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  pgcli</tspan><tspan fill="#768390" xml:space="preserve">  Postgres REPL</tspan></text>
-<text x="418" y="518.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  redis-cli</tspan><tspan fill="#768390" xml:space="preserve">  Redis client</tspan></text>
-<text x="418" y="537.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  usql</tspan><tspan fill="#768390" xml:space="preserve">  universal SQL CLI</tspan></text>
-<text x="418" y="574.0" fill="#58a6ff" font-weight="700">Security</text>
-<text x="418" y="592.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  age</tspan><tspan fill="#768390" xml:space="preserve">  modern file encryption</tspan></text>
-<text x="418" y="611.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  age-keygen</tspan><tspan fill="#768390" xml:space="preserve">  age key generation</tspan></text>
-<text x="418" y="629.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  hadolint</tspan><tspan fill="#768390" xml:space="preserve">  Dockerfile linter</tspan></text>
-<text x="418" y="648.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  trivy</tspan><tspan fill="#768390" xml:space="preserve">  vuln/IaC scanner</tspan></text>
+<text x="22" y="1240.0" fill="#58a6ff" font-weight="700">Workflow</text>
+<text x="22" y="1258.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  act</tspan><tspan fill="#768390" xml:space="preserve">  run GH Actions locally</tspan></text>
+<text x="22" y="1277.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  direnv</tspan><tspan fill="#768390" xml:space="preserve">  per-project env</tspan></text>
+<text x="22" y="1295.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gh</tspan><tspan fill="#768390" xml:space="preserve">  GitHub CLI</tspan></text>
+<text x="22" y="1314.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gitleaks</tspan><tspan fill="#768390" xml:space="preserve">  secret scanner</tspan></text>
+<text x="22" y="1332.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  glab</tspan><tspan fill="#768390" xml:space="preserve">  GitLab CLI</tspan></text>
+<text x="22" y="1351.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  glow</tspan><tspan fill="#768390" xml:space="preserve">  markdown reader</tspan></text>
+<text x="22" y="1369.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gum</tspan><tspan fill="#768390" xml:space="preserve">  shell TUI toolkit</tspan></text>
+<text x="22" y="1388.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  just</tspan><tspan fill="#768390" xml:space="preserve">  command runner</tspan></text>
+<text x="22" y="1406.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  mkcert</tspan><tspan fill="#768390" xml:space="preserve">  local TLS certs</tspan></text>
+<text x="22" y="1425.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  shfmt</tspan><tspan fill="#768390" xml:space="preserve">  shell formatter</tspan></text>
+<text x="418" y="56.0" fill="#58a6ff" font-weight="700">Modern CLI</text>
+<text x="418" y="74.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  bottom</tspan><tspan fill="#768390" xml:space="preserve">  system monitor</tspan></text>
+<text x="418" y="93.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  dust</tspan><tspan fill="#768390" xml:space="preserve">  nicer du</tspan></text>
+<text x="418" y="111.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  eza</tspan><tspan fill="#768390" xml:space="preserve">  modern ls</tspan></text>
+<text x="418" y="130.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gitui</tspan><tspan fill="#768390" xml:space="preserve">  git TUI (rust)</tspan></text>
+<text x="418" y="148.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  hyperfine</tspan><tspan fill="#768390" xml:space="preserve">  benchmarking</tspan></text>
+<text x="418" y="167.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  procs</tspan><tspan fill="#768390" xml:space="preserve">  nicer ps</tspan></text>
+<text x="418" y="185.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  sd</tspan><tspan fill="#768390" xml:space="preserve">  nicer sed</tspan></text>
+<text x="418" y="204.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  tokei</tspan><tspan fill="#768390" xml:space="preserve">  count code</tspan></text>
+<text x="418" y="222.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  xh</tspan><tspan fill="#768390" xml:space="preserve">  friendly HTTP client</tspan></text>
+<text x="418" y="259.5" fill="#58a6ff" font-weight="700">Database</text>
+<text x="418" y="278.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  pgcli</tspan><tspan fill="#768390" xml:space="preserve">  Postgres REPL</tspan></text>
+<text x="418" y="296.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  redis-cli</tspan><tspan fill="#768390" xml:space="preserve">  Redis client</tspan></text>
+<text x="418" y="315.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  usql</tspan><tspan fill="#768390" xml:space="preserve">  universal SQL CLI</tspan></text>
+<text x="418" y="352.0" fill="#58a6ff" font-weight="700">Security</text>
+<text x="418" y="370.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  age</tspan><tspan fill="#768390" xml:space="preserve">  modern file encryption</tspan></text>
+<text x="418" y="389.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  age-keygen</tspan><tspan fill="#768390" xml:space="preserve">  age key generation</tspan></text>
+<text x="418" y="407.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  hadolint</tspan><tspan fill="#768390" xml:space="preserve">  Dockerfile linter</tspan></text>
+<text x="418" y="426.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  trivy</tspan><tspan fill="#768390" xml:space="preserve">  vuln/IaC scanner</tspan></text>
+<text x="418" y="463.0" fill="#58a6ff" font-weight="700">Sysadmin / net</text>
+<text x="418" y="481.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  curlie</tspan><tspan fill="#768390" xml:space="preserve">  curl + httpie</tspan></text>
+<text x="418" y="500.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  doggo</tspan><tspan fill="#768390" xml:space="preserve">  modern DNS client</tspan></text>
+<text x="418" y="518.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  duf</tspan><tspan fill="#768390" xml:space="preserve">  disk usage/free</tspan></text>
+<text x="418" y="537.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  gping</tspan><tspan fill="#768390" xml:space="preserve">  ping with a graph</tspan></text>
+<text x="418" y="555.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  gron</tspan><tspan fill="#768390" xml:space="preserve">  greppable JSON</tspan></text>
+<text x="418" y="574.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  lnav</tspan><tspan fill="#768390" xml:space="preserve">  log file navigator</tspan></text>
+<text x="418" y="592.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  mtr</tspan><tspan fill="#768390" xml:space="preserve">  traceroute + ping</tspan></text>
+<text x="418" y="611.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  ncdu</tspan><tspan fill="#768390" xml:space="preserve">  disk usage TUI</tspan></text>
+<text x="418" y="629.5"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  nmap</tspan><tspan fill="#768390" xml:space="preserve">  network/port scanner</tspan></text>
+<text x="418" y="648.0"><tspan fill="#6e7681">✗</tspan><tspan fill="#6e7681" xml:space="preserve">  stern</tspan><tspan fill="#768390" xml:space="preserve">  multi-pod k8s logs</tspan></text>
 <text x="418" y="685.0" fill="#58a6ff" font-weight="700">API extras</text>
 <text x="418" y="703.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  jless</tspan><tspan fill="#768390" xml:space="preserve">  JSON/YAML pager</tspan></text>
 <text x="418" y="722.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  tldr</tspan><tspan fill="#768390" xml:space="preserve">  fast man pages</tspan></text>
@@ -108,5 +119,5 @@
 <text x="418" y="999.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  kubectl</tspan><tspan fill="#768390" xml:space="preserve">  Kubernetes CLI</tspan></text>
 <text x="418" y="1018.0"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  terraform</tspan><tspan fill="#768390" xml:space="preserve">  IaC</tspan></text>
 <text x="418" y="1036.5"><tspan fill="#3fb950">✓</tspan><tspan fill="#c9d1d9" xml:space="preserve">  yc</tspan><tspan fill="#768390" xml:space="preserve">  Yandex Cloud CLI</tspan></text>
-<text x="22" y="1264" fill="#8b949e"><tspan fill="#d29922">•</tspan> all cataloged tools present.</text>
+<text x="22" y="1486" fill="#8b949e"><tspan fill="#d29922">•</tspan> 9 tool(s) missing. Run `gearup` to install.</text>
 </svg>
