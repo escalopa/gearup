@@ -32,7 +32,7 @@ Print this. Tape it somewhere. Prefix = `Ctrl-a`, Leader = `Space`.
 | `Space f s` / `Space f S` | symbols in file / in workspace |
 | `-` | browse directory as a buffer (oil) |
 
-## Neovim — code (gopls)
+## Neovim — code (gopls / rust-analyzer)
 
 | Keys | Action |
 |---|---|
@@ -42,7 +42,8 @@ Print this. Tape it somewhere. Prefix = `Ctrl-a`, Leader = `Space`.
 | `Space c r` / `Space c a` | rename symbol / code action |
 | `[d` / `]d` / `Space e` | prev / next / show diagnostic |
 | `Space x x` / `Space x b` | all diagnostics / this buffer (trouble) |
-| save `*.go` | auto-format + organize imports |
+| save `*.go` | gofmt + organize imports |
+| save `*.rs` | rustfmt (clippy lints via checkOnSave) |
 
 ## Neovim — motion & editing
 
@@ -61,6 +62,16 @@ Print this. Tape it somewhere. Prefix = `Ctrl-a`, Leader = `Space`.
 | `Space h h` | pin menu |
 | `]h` / `[h` | next / prev git hunk |
 | `Space g p` / `Space g b` / `Space g r` | preview hunk / blame / reset hunk |
+
+## Neovim — run in tmux (vimux)
+
+| Keys | Action |
+|---|---|
+| `Space t t` | run tests (`go test ./...` / `cargo test`) in a tmux pane |
+| `Space t b` / `Space t r` | build / run (`go`/`cargo`, by filetype) |
+| `Space t p` / `Space t l` | prompt for a command / run last command |
+| `Space t z` / `Space t x` | zoom / close the runner pane |
+| `Ctrl-h/j/k/l` | move across nvim splits **and** tmux panes |
 
 ## gearup TUI
 

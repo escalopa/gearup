@@ -37,6 +37,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Rust: 4 spaces (rustfmt style)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  callback = function()
+    vim.bo.tabstop, vim.bo.shiftwidth, vim.bo.expandtab = 4, 4, true
+  end,
+})
+
 -- ====================================================== core keymaps ======
 local map = vim.keymap.set
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "clear search highlight" })
@@ -52,6 +60,18 @@ map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
+
+-- Run a build/test/run command in a tmux split via vimux, choosing the command
+-- by filetype (Go vs Rust). Falls back to a prompt for anything else.
+local function vimux_run(go_cmd, rust_cmd)
+  local ft = vim.bo.filetype
+  local cmd = (ft == "go" and go_cmd) or (ft == "rust" and rust_cmd) or nil
+  if cmd then
+    vim.fn.VimuxRunCommand(cmd)
+  else
+    vim.cmd("VimuxPromptCommand")
+  end
+end
 
 -- =========================================================== lazy.nvim ======
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -85,6 +105,7 @@ require("lazy").setup({
         { "<leader>c", group = "code/lsp" },
         { "<leader>h", group = "harpoon pins" },
         { "<leader>x", group = "diagnostics (trouble)" },
+        { "<leader>t", group = "tmux/test (vimux)" },
       },
     },
   },
@@ -145,7 +166,25 @@ require("lazy").setup({
   },
 
   -- ---- seamless tmux/nvim pane movement -------------------------------------
+  -- Ctrl-h/j/k/l moves across nvim splits AND tmux panes as one.
   { "christoomey/vim-tmux-navigator" },
+
+  -- ---- run commands in a tmux pane: vimux ------------------------------------
+  -- Keep the editor in one pane and your test/build output in another. The
+  -- runner commands pick `go`/`cargo` by filetype; Space-t-p prompts for any.
+  {
+    "preservim/vimux",
+    keys = {
+      { "<leader>tt", function() vimux_run("go test ./...", "cargo test") end,   desc = "tmux: run tests" },
+      { "<leader>tb", function() vimux_run("go build ./...", "cargo build") end,  desc = "tmux: build" },
+      { "<leader>tr", function() vimux_run("go run .", "cargo run") end,          desc = "tmux: run" },
+      { "<leader>tp", "<cmd>VimuxPromptCommand<CR>",  desc = "tmux: prompt command" },
+      { "<leader>tl", "<cmd>VimuxRunLastCommand<CR>", desc = "tmux: run last command" },
+      { "<leader>tz", "<cmd>VimuxZoomRunner<CR>",     desc = "tmux: zoom runner pane" },
+      { "<leader>tx", "<cmd>VimuxCloseRunner<CR>",    desc = "tmux: close runner" },
+      { "<leader>ti", "<cmd>VimuxInspectRunner<CR>",  desc = "tmux: inspect runner" },
+    },
+  },
 
   -- ---- in-file jumps: flash ---------------------------------------------------
   -- Press s + two characters: labels appear on every match; press a label
@@ -177,6 +216,16 @@ require("lazy").setup({
   -- ---- surround: cs"' ds( ysiw" ----------------------------------------------
   { "kylechui/nvim-surround", event = "VeryLazy", opts = {} },
 
+  -- ---- Rust Cargo.toml: crates.nvim ------------------------------------------
+  -- Inline latest-version hints in Cargo.toml plus :Crates commands to update
+  -- dependencies and open docs/crates.io.
+  {
+    "saecki/crates.nvim",
+    tag = "stable",
+    event = { "BufRead Cargo.toml" },
+    config = true,
+  },
+
   -- ---- git ----------------------------------------------------------------------
   {
     "lewis6991/gitsigns.nvim",
@@ -198,11 +247,13 @@ require("lazy").setup({
   -- ---- treesitter: fast, accurate highlighting ----------------------------------
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master", -- the new default `main` branch dropped the .configs API
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "go", "gomod", "gowork", "gosum", "lua", "bash",
-                             "json", "yaml", "proto", "sql", "dockerfile", "markdown" },
+        ensure_installed = { "go", "gomod", "gowork", "gosum", "rust", "toml",
+                             "lua", "bash", "json", "yaml", "proto", "sql",
+                             "dockerfile", "markdown" },
         highlight = { enable = true },
         indent = { enable = true },
       })
@@ -249,6 +300,20 @@ require("lazy").setup({
 
       require("lspconfig").gopls.setup(gopls_opts)
 
+      -- rust-analyzer (install with `rustup component add rust-analyzer clippy`).
+      -- checkOnSave runs clippy so you get lints as you save.
+      require("lspconfig").rust_analyzer.setup({
+        capabilities = caps,
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = { allFeatures = true, buildScripts = { enable = true } },
+            checkOnSave = { command = "clippy" },
+            procMacro = { enable = true },
+            inlayHints = { bindingModeHints = { enable = false } },
+          },
+        },
+      })
+
       -- LSP keymaps (buffer-local, on attach). fzf-lua renders the lists,
       -- so "find references" in a huge repo is a fuzzy-searchable picker.
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -275,6 +340,12 @@ require("lazy").setup({
             apply = true,
           })
         end,
+      })
+
+      -- format on save (rustfmt via rust-analyzer)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.rs",
+        callback = function() vim.lsp.buf.format({ timeout_ms = 2000 }) end,
       })
     end,
   },
