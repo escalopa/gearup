@@ -84,6 +84,21 @@ install_yc() {
   run ln -sf "$HOME/.yandex-cloud/bin/yc" "$HOME/.local/bin/yc"
 }
 
+# ---- google cloud cli -------------------------------------------------------
+install_gcloud() {
+  if [[ "$GEARUP_OS" == "macos" ]]; then
+    run brew install --cask google-cloud-sdk
+  else
+    # Official installer, non-interactive; symlink gcloud/gsutil onto PATH.
+    run curl -fsSL https://sdk.cloud.google.com -o /tmp/gcloud-install.sh || return 1
+    run bash /tmp/gcloud-install.sh --disable-prompts --install-dir="$HOME" || return 1
+    run rm -f /tmp/gcloud-install.sh
+    run mkdir -p "$HOME/.local/bin"
+    run ln -sf "$HOME/google-cloud-sdk/bin/gcloud" "$HOME/.local/bin/gcloud"
+    run ln -sf "$HOME/google-cloud-sdk/bin/gsutil" "$HOME/.local/bin/gsutil"
+  fi
+}
+
 # name=install-function ; command name is the GEARUP_ONLY / has_cmd key.
 CLOUD_TOOLS=(
   "terraform=install_terraform"
@@ -92,6 +107,7 @@ CLOUD_TOOLS=(
   "tflint=install_tflint"
   "aws=install_awscli"
   "yc=install_yc"
+  "gcloud=install_gcloud"
 )
 
 for entry in "${CLOUD_TOOLS[@]}"; do
