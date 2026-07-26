@@ -82,6 +82,10 @@ the TUI, run `./install.sh ai`, or set `GEARUP_AI=1 ./install.sh`.
   vim-tmux-navigator (unified `Ctrl-h/j/k/l` movement) and vimux —
   `Space-t-t/-b/-r` run tests/build/run in a tmux pane, picking `go`/`cargo`
   by filetype.
+- **Ghostty** terminal config (`config/ghostty/config`): One Dark Pro colors to
+  match VS Code, tasteful window tweaks (padding, blur, native tabs), and common
+  keybinds — splits (`super+d` / `super+shift+d`), split nav/resize, `super+k`
+  clear, font-size, and a `super+` `` ` `` drop-down quick terminal.
 - **Shell block** for bash *and* zsh: PATH wiring, GNU userland on macOS,
   zoxide, fzf keybindings, zsh plugins, starship, the `ws` switcher, a dedicated
   **[aliases file](config/shell/aliases.sh)** (git `g`/`ga`/`gcm`, terraform
